@@ -1,0 +1,26 @@
+<div class="text-center py-5">
+  <p>Bienvenu chez Surprizzzz</p>
+</div>
+
+<div class= "container">
+  <p>Vos urgences a gerer</p>
+  <div class="">
+    <%@sitting_areas.each do |table| %>
+      <div>
+      <p>table <%=table.table_number%></p>
+        <div>
+             order list
+          <%table.orders.each do |order|%>
+            <%=order.item.name%>
+          <% end %>
+        </div>
+      </div>
+      <%# all check button%>
+      <div>
+      <p>All</p>
+      <button>v</button>
+      <button>x</button>
+      </div>
+    <% end %>
+  </div>
+</div>

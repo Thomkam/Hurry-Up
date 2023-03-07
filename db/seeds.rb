@@ -37,8 +37,12 @@ restaurant1.save!
   sitting_area2 = SittingArea.new(
     table_number: 2
   )
-  sitting_area1.restaurant = restaurant1
-  sitting_area1.save!
+  sitting_area2.restaurant = restaurant1
+  sitting_area2.save!
+
+
+
+
 
 
 
@@ -63,6 +67,9 @@ restaurant2.save!
 
 
 
+
+
+
 restaurant3 = Restaurant.new(
   name: "Thomas's nugs",
   address: "the far est",
@@ -81,6 +88,10 @@ restaurant3.save!
   )
   sitting_area6.restaurant = restaurant3
   sitting_area6.save!
+
+
+
+
 
 
 category1 = Category.new(
