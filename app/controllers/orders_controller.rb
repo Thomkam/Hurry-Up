@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   def new
-    @item = Item.find(params[:item_id])
+    # @item = Item.find(params[:item_id])
+    @category = Category.find(params[:category_id])
+    @sitting_area = SittingArea.find(params[:sitting_area_id])
     @order = Order.new
   end
 

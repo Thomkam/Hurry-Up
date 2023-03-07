@@ -1,0 +1,9 @@
+<h1>New Order</h1>
+<% @category.items.each do |item| %>
+  <%= simple_form_for [@sitting_area, Order.new], html: { class: 'form-inline' } do |f| %>
+    <%= f.input :item_id, as: :hidden, input_html: { value: item.id } %>
+    <%= f.input :quantity, label: item.name %>
+    <%= f.submit 'ok' %>
+  <% end %>
+
+<% end %>
