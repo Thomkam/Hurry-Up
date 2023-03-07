@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
   def show
-    @sitting_area = Sitting_area.new
+  @restaurant = Restaurant.find(params[:id])
+  @sitting_areas = @restaurant.sitting_areas
   end
 
   def new
