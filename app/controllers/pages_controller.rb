@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @orders = Order.first(3)
+    @restaurants = Restaurant.all
   end
 
   def choose_restaurant
