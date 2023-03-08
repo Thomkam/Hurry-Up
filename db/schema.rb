@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_150727) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_08_144759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,13 +74,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_150727) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.integer "number_of_tables"
+    t.integer "number_of_sitting_areas"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "sitting_areas", force: :cascade do |t|
-    t.integer "table_number"
+    t.integer "sitting_area_number"
     t.bigint "restaurant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,8 +95,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_150727) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "restaurant_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["restaurant_id"], name: "index_users_on_restaurant_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -106,4 +108,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_150727) do
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "sitting_areas"
   add_foreign_key "sitting_areas", "restaurants"
+  add_foreign_key "users", "restaurants"
 end
