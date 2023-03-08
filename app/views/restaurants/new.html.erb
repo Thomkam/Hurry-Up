@@ -1,0 +1,12 @@
+<%# simple form avec btn qui pointe vers create d'un resto et input photo (cloudinary dans le cours)%>
+<p>Add your Restaurant informations</p>
+<%#  controller de resto %>
+
+
+<%= simple_form_for @restaurant, url: restaurants_path, method: :post do |f| %>
+  <%= f.input :name, label: 'Name' %>
+  <%= f.input :address, label: 'Address' %>
+  <%= f.input :number_of_sitting_areas, label: 'Number of Sitting Areas' %>
+  <%= f.input :image, as: :file, label: 'Image' %>
+  <%= f.submit 'Save', class: 'btn btn-primary' %>
+<% end %>
