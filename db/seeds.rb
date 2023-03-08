@@ -182,7 +182,7 @@ category5 = Category.new(
   category5.save!
 
       itemverres1 = Item.new(
-        name: "verre a eau",
+        name: "verre à eau",
         description: "",
         custom:""
       )
