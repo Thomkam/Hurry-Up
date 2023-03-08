@@ -228,6 +228,31 @@ restaurant1.save!
     sitting_area2.restaurant = restaurant1
     sitting_area2.save!
 
+      order1 = Order.new(
+        quantity: 2 ,
+        status: "accepter"
+      )
+      order1.item = itemcouverts1
+      order1.sitting_area = sitting_area1
+      order1.save!
+
+
+      order2 = Order.new(
+        quantity: 1 ,
+        status: "refuser"
+      )
+      order2.item = itemsauce1
+      order2.sitting_area = sitting_area1
+      order2.save!
+
+      order3 = Order.new(
+        quantity: 2 ,
+        status: "en attente"
+      )
+      order3.item = itemsauce2
+      order3.sitting_area = sitting_area1
+      order3.save!
+
 
 
 
@@ -253,30 +278,30 @@ restaurant2.save!
     sitting_area4.restaurant = restaurant2
     sitting_area4.save!
 
-        order1 = Order.new(
+        order4 = Order.new(
           quantity: 2 ,
           status: "accepter"
         )
-        order1.item = itemcouverts1
-        order1.sitting_area = sitting_area4
-        order1.save!
+        order4.item = itemcouverts1
+        order4.sitting_area = sitting_area4
+        order4.save!
 
 
-        order2 = Order.new(
+        order5 = Order.new(
           quantity: 1 ,
           status: "refuser"
         )
-        order2.item = itemsauce1
-        order2.sitting_area = sitting_area4
-        order2.save!
+        order5.item = itemsauce1
+        order5.sitting_area = sitting_area4
+        order5.save!
 
-        order3 = Order.new(
+        order6 = Order.new(
           quantity: 2 ,
           status: "en attente"
         )
-        order3.item = itemsauce2
-        order3.sitting_area = sitting_area4
-        order3.save!
+        order6.item = itemsauce2
+        order6.sitting_area = sitting_area4
+        order6.save!
 
 
 
@@ -301,3 +326,28 @@ restaurant3.save!
     )
     sitting_area6.restaurant = restaurant3
     sitting_area6.save!
+
+      order7 = Order.new(
+        quantity: 2 ,
+        status: "accepter"
+      )
+      order7.item = itemcouverts1
+      order7.sitting_area = sitting_area6
+      order7.save!
+
+
+      order8 = Order.new(
+        quantity: 1 ,
+        status: "refuser"
+      )
+      order8.item = itemsauce1
+      order8.sitting_area = sitting_area6
+      order8.save!
+
+      order9 = Order.new(
+        quantity: 2 ,
+        status: "en attente"
+      )
+      order9.item = itemsauce2
+      order9.sitting_area = sitting_area6
+      order9.save!
