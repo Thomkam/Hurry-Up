@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'open-uri'
+Order.destroy_all
 Item.destroy_all
 SittingArea.destroy_all
 User.destroy_all
@@ -21,6 +22,59 @@ thomas.save!
 benoit = User.create(email: "benoit@example.com", password: "password")
 benoit.save!
 
+
+
+
+
+
+
+category1 = Category.new(
+  name: "couverts"
+)
+category1.save!
+
+    item1 = Item.new(
+      name: "verre",
+      description: "",
+      custom:""
+    )
+    item1.category = category1
+    item1.save!
+
+    item2 = Item.new(
+      name: "couteau",
+      description: "",
+      custom:""
+    )
+    item2.category = category1
+    item2.save!
+
+
+
+category2 = Category.new(
+  name: "sauce"
+)
+category2.save!
+
+    item3 = Item.new(
+      name: "mayonnaise",
+      description: "ingredients: egg, mustard, oil",
+      custom:""
+    )
+    item3.category = category2
+    item3.save!
+
+    item4 = Item.new(
+      name: "ketchup",
+      description: "ingredients: tomato concentrate, vinegar, corn syrup, salt, ",
+      custom:""
+    )
+    item4.category = category2
+    item4.save!
+
+
+
+
 restaurant1 = Restaurant.new(
   name: "Riwan's spices",
   address: "the best place",
@@ -28,17 +82,17 @@ restaurant1 = Restaurant.new(
 )
 restaurant1.save!
 
-  sitting_area1 = SittingArea.new(
-    table_number: 1
-  )
-  sitting_area1.restaurant = restaurant1
-  sitting_area1.save!
+    sitting_area1 = SittingArea.new(
+      table_number: 1
+    )
+    sitting_area1.restaurant = restaurant1
+    sitting_area1.save!
 
-  sitting_area2 = SittingArea.new(
-    table_number: 2
-  )
-  sitting_area2.restaurant = restaurant1
-  sitting_area2.save!
+    sitting_area2 = SittingArea.new(
+      table_number: 2
+    )
+    sitting_area2.restaurant = restaurant1
+    sitting_area2.save!
 
 
 
@@ -53,17 +107,42 @@ restaurant2 = Restaurant.new(
 )
 restaurant2.save!
 
-  sitting_area3 = SittingArea.new(
-    table_number: 1
-  )
-  sitting_area3.restaurant = restaurant2
-  sitting_area3.save!
+    sitting_area3 = SittingArea.new(
+      table_number: 1
+    )
+    sitting_area3.restaurant = restaurant2
+    sitting_area3.save!
 
-  sitting_area4 = SittingArea.new(
-    table_number: 2
-  )
-  sitting_area4.restaurant = restaurant2
-  sitting_area4.save!
+    sitting_area4 = SittingArea.new(
+      table_number: 2
+    )
+    sitting_area4.restaurant = restaurant2
+    sitting_area4.save!
+
+        order1 = Order.new(
+          quantity: 2 ,
+          status: "accepter"
+        )
+        order1.item = item1
+        order1.sitting_area = sitting_area4
+        order1.save!
+
+
+        order2 = Order.new(
+          quantity: 1 ,
+          status: "refuser"
+        )
+        order2.item = item3
+        order2.sitting_area = sitting_area4
+        order2.save!
+
+        order3 = Order.new(
+          quantity: 2 ,
+          status: "en attente"
+        )
+        order3.item = item4
+        order3.sitting_area = sitting_area4
+        order3.save!
 
 
 
@@ -77,63 +156,14 @@ restaurant3 = Restaurant.new(
 )
 restaurant3.save!
 
-  sitting_area5 = SittingArea.new(
-    table_number: 1
-  )
-  sitting_area5.restaurant = restaurant3
-  sitting_area5.save!
+    sitting_area5 = SittingArea.new(
+      table_number: 1
+    )
+    sitting_area5.restaurant = restaurant3
+    sitting_area5.save!
 
-  sitting_area6 = SittingArea.new(
-    table_number: 2
-  )
-  sitting_area6.restaurant = restaurant3
-  sitting_area6.save!
-
-
-
-
-
-
-category1 = Category.new(
-  name: "vaisselle"
-)
-category1.save!
-
-  item1 = Item.new(
-    name: "verre",
-    description: "",
-    custom:""
-  )
-  item1.category = category1
-  item1.save!
-
-  item2 = Item.new(
-    name: "couteau",
-    description: "",
-    custom:""
-  )
-  item2.category = category1
-  item2.save!
-
-
-
-category2 = Category.new(
-  name: "sauce"
-)
-category2.save!
-
-  item3 = Item.new(
-    name: "mayonnaise",
-    description: "ingredients: egg, mustard, oil",
-    custom:""
-  )
-  item3.category = category2
-  item3.save!
-
-  item4 = Item.new(
-    name: "ketchup",
-    description: "ingredients: tomato concentrate, vinegar, corn syrup, salt, ",
-    custom:""
-  )
-  item4.category = category2
-  item4.save!
+    sitting_area6 = SittingArea.new(
+      table_number: 2
+    )
+    sitting_area6.restaurant = restaurant3
+    sitting_area6.save!
