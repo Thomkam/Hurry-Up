@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def home
     @orders = Order.first(3)
   end
+
+  def choose_restaurant
+  end
 end
