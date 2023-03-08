@@ -1,9 +1,44 @@
 <h1>New Order</h1>
 <% @category.items.each do |item| %>
-  <%= simple_form_for [@sitting_area, Order.new], html: { class: 'form-inline' } do |f| %>
-    <%= f.input :item_id, as: :hidden, input_html: { value: item.id } %>
-    <%= f.input :quantity, label: item.name %>
-    <%= f.submit 'ok' %>
-  <% end %>
 
+  <div class="item">
+    <%= link_to '+', sitting_area_orders_path(@sitting_area, @order), data: {turbo_method: :post}, class: "plus-btn" %>
+    <button class="minus-btn" type="button">-</button>
+
+    <%= simple_form_for [@sitting_area, Order.new], html: { class: 'form-inline' } do |f| %>
+      <%= f.input :item_id, as: :hidden, input_html: { value: item.id } %>
+      <%= f.input :quantity, label: item.name, input_html: {class: 'item-quantity', value: 0, min: 0} %>
+      <%= f.submit 'Add to Order', class: 'add-to-order' %>
+    <% end %>
+  </div>
 <% end %>
+
+<script>
+  document.querySelectorAll('.item').forEach(item => {
+    const quantityInput = item.querySelector('.item-quantity');
+    const addButton = item.querySelector('.add-to-order');
+    const plusButton = item.querySelector('.plus-btn');
+    const minusButton = item.querySelector('.minus-btn');
+
+    plusButton.addEventListener('click', () => {
+      quantityInput.stepUp();
+    });
+
+    minusButton.addEventListener('click', () => {
+      if (quantityInput.value > 0) {
+        quantityInput.stepDown();
+      }
+    });
+
+    addButton.addEventListener('click', () => {
+      if (quantityInput.value > 0) {
+        addButton.disabled = true;
+        quantityInput.disabled = true;
+           addButton.textContent = 'Added to Order';
+    const item_id = quantityInput.parentElement.querySelector('input[type="hidden"]').value;
+    const quantity = quantityInput.value;
+    // const link =
+      }
+    });
+  });
+</script>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :sitting_areas, only: [:show] do
-    resources :orders, only: %i[new create]
+    resources :orders, only: %i[new create show]
   end
 
   resources :orders, only: %i[update destroy]

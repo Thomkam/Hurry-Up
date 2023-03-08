@@ -8,11 +8,12 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    raise
     @item = Item.find(params[:item_id])
-    @order.user = current_user
+    @order.sitting_area = SittingArea.find(params[:sitting_area_id])
     @order.item = @item
     if @order.save
-      redirect_to "#", notice: 'order was successfully created.'
+      redirect_to new_sitting_area_order_path(@sitting_area), notice: 'order was successfully created.'
     else
       render :new
     end
@@ -29,5 +30,16 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     redirect_to orders_url, notice: 'Order was successfully destroyed.'
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    # @sitting_areas = @order.sitting_areas
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:quantity, :item_id)
   end
 end
