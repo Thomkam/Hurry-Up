@@ -1,9 +1,59 @@
-<h1>New Order</h1>
-<% @category.items.each do |item| %>
-  <%= simple_form_for [@sitting_area, Order.new], html: { class: 'form-inline' } do |f| %>
-    <%= f.input :item_id, as: :hidden, input_html: { value: item.id } %>
-    <%= f.input :quantity, label: item.name %>
-    <%= f.submit 'ok' %>
-  <% end %>
 
+<h1>All orders</h1>
+
+<% @sitting_area.orders.each do |order| %>
+  <div>
+    <%= order.quantity %> <%= order.item.name %> : <%= order.status %> LOL
+    <%= link_to "delete", order_path(order), data: {turbo_method: :delete, turbo_confirm: 'Are you sure', class: "disabled"} %>
+  </div>
 <% end %>
+
+<h1>New Order</h1>
+
+<% @category.items.each do |item| %>
+
+  <div class="d-flex">
+    <%= item.name %>
+    <%= link_to '-', remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id),
+    class: "btn btn-primary #{ 'disabled' if Order.find_by(item_id: item.id, sitting_area_id: params[:sitting_area_id]).nil? }" %>
+    <%= link_to '+', add_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "btn btn-primary"  %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+<script>
+  // document.querySelectorAll('.item').forEach(item => {
+  //   const quantityInput = item.querySelector('.item-quantity');
+  //   const addButton = item.querySelector('.add-to-order');
+  //   const plusButton = item.querySelector('.plus-btn');
+  //   const minusButton = item.querySelector('.minus-btn');
+
+  //   plusButton.addEventListener('click', () => {
+  //     quantityInput.stepUp();
+  //   });
+
+  //   minusButton.addEventListener('click', () => {
+  //     if (quantityInput.value > 0) {
+  //       quantityInput.stepDown();
+  //     }
+  //   });
+
+  //   addButton.addEventListener('click', () => {
+  //     if (quantityInput.value > 0) {
+  //       addButton.disabled = true;
+  //       quantityInput.disabled = true;
+  //          addButton.textContent = 'Added to Order';
+  //   const item_id = quantityInput.parentElement.querySelector('input[type="hidden"]').value;
+  //   const quantity = quantityInput.value;
+  //   // const link =
+  //     }
+  //   });
+  // });
+</script>
