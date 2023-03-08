@@ -11,10 +11,8 @@
   </head>
 
   <body>
-  <%#= if curent_user
-  render "shared/navbar" %>
-<%= render "shared/flashes" %>
-
+    <%= render "shared/navbar" unless controller_name == "sitting_areas" %>
+    <%= render "shared/flashes" %>
     <%= yield %>
   </body>
 </html>

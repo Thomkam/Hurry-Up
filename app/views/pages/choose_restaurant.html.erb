@@ -1,5 +1,13 @@
-<h1>choisissez votre restau</h1>
-
-
-
-<%# créer un link_to vers la new_d'un restau %>
+<h1>bienvenu dans hurry up !!</h1>
+<% if user_signed_in? %>
+  <p>ou travaillez vous </p>
+  <ul>
+    <%@restaurants.each do |restaurant|%>
+    <li><%=link_to "#{restaurant.name}", restaurant_path(restaurant.id)%></li>
+    <% end %>
+  </ul>
+  <%= link_to "Nouveau Restaurant", new_restaurant_path %>
+  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+  <% else %>
+  <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+<% end %>
