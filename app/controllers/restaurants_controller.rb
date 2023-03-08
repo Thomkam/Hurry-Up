@@ -13,9 +13,12 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.user = current_user
+    @restaurant.number_of_sitting_areas.times do |index|
+      @restaurant.sitting_areas.new(sitting_area_number: index + 1)
+    end
     if @restaurant.save
-      redirect_to restaurants_path, notice: 'restaurant was successfully created 😎.'
+      @restaurant.users << current_user
+      redirect_to restaurant_path(@restaurant), notice: 'restaurant was successfully created 😎.'
     else
       render :new
     end
@@ -39,4 +42,6 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :photo, :number_of_sitting_areas)
   end
+
+
 end
