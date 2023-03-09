@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
   root to: "pages#home"
 
   get '/choose_restaurant', to: 'pages#choose_restaurant'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get '/assign_restaurant', to: 'pages#assign_restaurant'
 
   resources :sitting_areas, only: [:show] do
     resources :orders, only: %i[new show] do

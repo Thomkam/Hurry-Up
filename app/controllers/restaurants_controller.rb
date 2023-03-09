@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   def show
-  @restaurant = Restaurant.find(params[:id])
-  @sitting_areas = @restaurant.sitting_areas
+    @restaurant = Restaurant.find(params[:id])
+    @sitting_areas = @restaurant.sitting_areas
   end
 
   def new
@@ -42,6 +42,4 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :photo, :number_of_sitting_areas)
   end
-
-
 end
