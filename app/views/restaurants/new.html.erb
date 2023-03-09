@@ -2,7 +2,6 @@
 <p>Add your Restaurant informations</p>
 <%#  controller de resto %>
 
-
 <%= simple_form_for @restaurant, url: restaurants_path, method: :post do |f| %>
   <%= f.input :name, label: 'Name' %>
   <%= f.input :address, label: 'Address' %>
