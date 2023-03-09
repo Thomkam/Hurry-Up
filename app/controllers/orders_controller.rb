@@ -38,11 +38,11 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
-    else
-      render :edit
-    end
+    @order = Order.find(params[:id])
+    @order.status = params[:order][:status]
+    @order.employee = current_user.id
+    @order.save
+    redirect_to restaurant_path(@order.sitting_area.restaurant), status: :unprocessable_entity
   end
 
   def destroy
