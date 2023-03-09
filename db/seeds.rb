@@ -7,15 +7,6 @@ User.destroy_all
 Restaurant.destroy_all
 Category.destroy_all
 
-# CREATE USER
-
-riwan = User.create(email: "riwan@example.com", password: "password")
-riwan.save!
-thomas = User.create(email: "thomas@example.com", password: "password")
-thomas.save!
-benoit = User.create(email: "benoit@example.com", password: "password")
-benoit.save!
-
 # CREATE CATEGORY AND ITEMS
 
 category1 = Category.new(name: "couverts")
@@ -150,6 +141,12 @@ sitting_area5.save!
 sitting_area6 = SittingArea.new(sitting_area_number: 2)
 sitting_area6.restaurant = restaurant3
 sitting_area6.save!
+
+# CREATE USER
+
+riwan = User.create!(email: "riwan@example.com", password: "password", restaurant: restaurant1)
+thomas = User.create!(email: "thomas@example.com", password: "password", restaurant: restaurant1)
+benoit = User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant1)
 
 # CREATE ORDERS
 
