@@ -38,11 +38,9 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
-    else
-      render :edit
-    end
+    @order = Order.find(params[:id])
+    @order.status = params[:order][:status]
+    @order.save
   end
 
   def destroy
@@ -62,4 +60,6 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:quantity, :item_id)
   end
+
+
 end

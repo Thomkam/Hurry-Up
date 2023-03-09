@@ -8,22 +8,40 @@
     <% @sitting_areas.each do |sitting_area| %>
       <%= link_to sitting_area_path(sitting_area), class: "text-decoration-none text-black" do  %>
         <% unless sitting_area.orders.empty? %>
-          <div class="order_card px-10">
-            <p>table <%=sitting_area.sitting_area_number%></p>
-            <div class="mx-5" style="">
-              <%sitting_area.orders.each do |order|%>
-              <div class="d-flex justify-content-between " style="">
-                <p><%=order.item.name%> x<%=order.quantity%></p>
-                <p>time</p>
-                <div>
-                  <button>v</button>
-                  <button>x</button>
+
+          <div>
+            <div class="order_card px-10">
+              <p>table <%=sitting_area.sitting_area_number%>
+              <div class="mx-5" style="">
+                <%sitting_area.orders.each do |order|%>
+                <div class="d-flex justify-content-between " style="">
+                  <p><%=order.item.name%> x<%=order.quantity%></p>
+                  <p>time</p>
+                  <div class="d-flex justify-content-between">
+                    <%=form_with model: order do |f| %>
+                      <%= f.hidden_field :status, value:"accepter" %>
+                      <%= f.submit value:"v" %>
+                    <% end %>
+                                        <%=form_with model: order do |f| %>
+                      <%= f.hidden_field :status, value:"refuser" %>
+                      <%= f.submit value:"x" %>
+                    <% end %>
+                  </div>
+
                 </div>
               </div>
               <% end %>
             </div>
           </div>
-        <% end %>
+
+          <%# all check button%>
+          <div class="d-flex justify-content-end mt-2 mx-5 p-1 ddzd">
+          <p>All</p>
+          <button class="update_order_status">v</button>
+          <button>x</button>
+          </div>
+        </div>
+
       <% end %>
   <% end %>
   </div>
