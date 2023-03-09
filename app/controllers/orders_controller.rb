@@ -3,10 +3,12 @@ class OrdersController < ApplicationController
     @category = Category.find(params[:category_id])
     @sitting_area = SittingArea.find(params[:sitting_area_id])
     @order = Order.new
+    @pending_orders = @sitting_area.orders.where(status: "en attente")
+    @passed_orders = @sitting_area.orders - @pending_orders
   end
 
   def add_order
-    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id])
+    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id], status: "en atttente")
     if @order.nil?
       @order = Order.new(status: "en attente", quantity: 1)
       @order.item = Item.find(params[:item_id])
@@ -24,7 +26,7 @@ class OrdersController < ApplicationController
   end
 
   def remove_order
-    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id]) # Find order
+    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id], status: "en attente") # Find order
     if @order.quantity > 1
       @order.quantity -= 1 # decrement quantity
       @order.save # save
