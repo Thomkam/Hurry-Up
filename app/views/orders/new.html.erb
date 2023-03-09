@@ -1,59 +1,49 @@
+<%= link_to "retour", sitting_area_path(@sitting_area) %>
 
-<h1>All orders</h1>
-
-<% @sitting_area.orders.each do |order| %>
-  <div>
-    <%= order.quantity %> <%= order.item.name %> : <%= order.status %> LOL
-    <%= link_to "delete", order_path(order), data: {turbo_method: :delete, turbo_confirm: 'Are you sure', class: "disabled"} %>
+<hr>
+<h5 class="mb-0 py-1">Historique des commandes</h5>
+<% @passed_orders.each do |order| %>
+  <div class="py-1">
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= order.quantity %> <%= order.item.name %>
+        <%= order.find_time %>
+      </div>
+      <div class="badge bg-secondary"><%= order.status %></div>
+    </div>
+    <small>(il y a <%= order.find_time %>) </small><small>pris en charge par <%= User.find(order.employee).email.capitalize.split("@")[0] %></small>
   </div>
 <% end %>
 
-<h1>New Order</h1>
+<hr>
+<h5 class="mb-0 py-1">Commandes en attente</h5>
+<% @pending_orders.each do |order| %>
+  <div class="py-1">
+    <div class="d-flex justify-content-between">
+      <%= order.quantity %> <%= order.item.name %>
+      <div class="badge bg-secondary"><%= order.status %></div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <small>(il y a <%= order.find_time %>)</small>
+      <div class="d-flex">
+        <%= link_to "supprimer", order_path(order), class: "disabled pe-2", data: {turbo_method: :delete, turbo_confirm: 'Are you sure'} %>
+        <%= link_to "modifier", new_sitting_area_order_path(@sitting_area, category_id: order.category.id) %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
+<hr>
+<h5 class="mb-0 py-1">Passer commande</h5>
 <% @category.items.each do |item| %>
 
-  <div class="d-flex">
+  <div class="d-flex w-100 justify-content-between py-2">
     <%= item.name %>
-    <%= link_to '-', remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id),
-    class: "btn btn-primary #{ 'disabled' if Order.find_by(item_id: item.id, sitting_area_id: params[:sitting_area_id]).nil? }" %>
-    <%= link_to '+', add_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "btn btn-primary"  %>
+    <div class="d-flex align-items-center">
+      <%= link_to '-', remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id),
+      class: "btn btn-primary #{ 'disabled' if Order.find_by(item_id: item.id, sitting_area_id: params[:sitting_area_id]).nil? }" %>
+      <div class="px-2"><%= @sitting_area.orders.find_by(item: item, status: "en attente").nil? ? '0' : @sitting_area.orders.find_by(item: item, status: "en attente").quantity %></div>
+      <%= link_to '+', add_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "btn btn-primary"  %>
+    </div>
   </div>
 <% end %>
-
-
-
-
-
-
-
-
-
-<script>
-  // document.querySelectorAll('.item').forEach(item => {
-  //   const quantityInput = item.querySelector('.item-quantity');
-  //   const addButton = item.querySelector('.add-to-order');
-  //   const plusButton = item.querySelector('.plus-btn');
-  //   const minusButton = item.querySelector('.minus-btn');
-
-  //   plusButton.addEventListener('click', () => {
-  //     quantityInput.stepUp();
-  //   });
-
-  //   minusButton.addEventListener('click', () => {
-  //     if (quantityInput.value > 0) {
-  //       quantityInput.stepDown();
-  //     }
-  //   });
-
-  //   addButton.addEventListener('click', () => {
-  //     if (quantityInput.value > 0) {
-  //       addButton.disabled = true;
-  //       quantityInput.disabled = true;
-  //          addButton.textContent = 'Added to Order';
-  //   const item_id = quantityInput.parentElement.querySelector('input[type="hidden"]').value;
-  //   const quantity = quantityInput.value;
-  //   // const link =
-  //     }
-  //   });
-  // });
-</script>
