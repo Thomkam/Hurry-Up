@@ -1,5 +1,7 @@
 <div class="py-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @restaurant.image.key, height: 300, crop: :fill %>'); background size: cover; background-position: center;">
+  <%= link_to restaurant_path(@restaurant), class: "text-decoration-none text-white" do %>
   <h1 class="text-white ps-3"><%= @restaurant.name %></h1>
+  <% end %>
 </div>
 
 <h2 class="py-3">Que pouvons-nous faire pour vous ? <small><i>Table <%= @sitting_area.sitting_area_number %></i></small></h2>
