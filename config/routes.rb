@@ -18,6 +18,12 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: %i[update destroy]
+  resources :orders do
+    member do
+      post :toggle_status
+    end
+  end
+
   resources :restaurants, except: [:index]
   resources :items, only: %i[new create]
 end

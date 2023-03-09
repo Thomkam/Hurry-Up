@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def add_order
     @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id])
     if @order.nil?
-      @order = Order.new(status: "pending", quantity: 1)
+      @order = Order.new(status: "en attente", quantity: 1)
       @order.item = Item.find(params[:item_id])
       @order.sitting_area = SittingArea.find(params[:sitting_area_id])
       if @order.save
@@ -36,11 +36,9 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
-    else
-      render :edit
-    end
+    @order = Order.find(params[:id])
+    @order.status = params[:order][:status]
+    @order.save
   end
 
   def destroy
@@ -60,4 +58,6 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:quantity, :item_id)
   end
+
+
 end
