@@ -1,30 +1,33 @@
 <div class= "container">
   <p>Vos urgences a gerer</p>
-  <div class="">
-    <%@sitting_areas.each do |sitting_area| %>
-      <% unless sitting_area.orders.empty? %>
-      <div class="order_card px-10">
-        <p>table <%=sitting_area.sitting_area_number%></p>
-        <div class="mx-5" style="">
-          <%sitting_area.orders.each do |order|%>
-          <div class="d-flex justify-content-between " style="">
-            <p><%=order.item.name%> x<%=order.quantity%></p>
-            <p>time</p>
-            <div>
-              <button>v</button>
-              <button>x</button>
-            </div>
+  <div class="" >
+
+      <%@sitting_areas.each do |sitting_area| %>
+        <% unless sitting_area.orders.empty? %>
+          <div>
+            <div class="order_card px-10">
+              <p>table <%=sitting_area.sitting_area_number%></p>
+              <div class="mx-5" style="">
+                <%sitting_area.orders.each do |order|%>
+                <div class="d-flex justify-content-between " style="">
+                  <p><%=order.item.name%> x<%=order.quantity%></p>
+                  <p>time</p>
+                  <div >
+                    <button>v</button>
+                    <button>x</button>
+                  </div>
+                </div>
+                  <% end %>
+              </div>
           </div>
-          <% end %>
+          <%# all check button%>
+          <div class="d-flex justify-content-end mt-2 mx-5 p-1 ">
+          <p>All</p>
+          <button>v</button>
+          <button>x</button>
+          </div>
         </div>
-      </div>
       <% end %>
-      <%# all check button%>
-      <div>
-      <p>All</p>
-      <button>v</button>
-      <button>x</button>
-      </div>
-    <% end %>
+  <% end %>
   </div>
 </div>
