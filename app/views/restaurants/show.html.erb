@@ -1,9 +1,8 @@
 <div class="py-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @restaurant.image.key, height: 300, crop: :fill %>'); background size: cover; background-position: center;">
-  <h1 class="text-white ps-3"><%= @restaurant.name %></h1>
+  <h1 class="text-white ps-3">  <%= link_to "#{ @restaurant.name}", sitting_area_path(@sitting_areas.first) %></h1>
 </div>
 
 <div class= "container">
-  <%= link_to "table", sitting_area_path(@sitting_areas.first) %>
   <div class="">
     <% @sitting_areas.each do |sitting_area| %>
         <% unless sitting_area.orders.where(status: "en attente").empty? %>
@@ -38,9 +37,13 @@
           </div>
           <%# all check button%>
           <div class="d-flex justify-content-end mt-2 mx-5 p-1 ddzd">
-            <p>All</p>
-            <button class="update_order_status">v</button>
-            <button>x</button>
+    <%# <%= form_with url: update_all_orders_path, method: :patch do  %>
+  <%# <div class="d-flex justify-content-end mt-2 mx-5 p-1 ddzd"> %>
+    <%# <p>All</p> %>
+    <%# <%= button_tag "Accept All", type: "submit", name: "status", value: "accepter" %> %>
+    <%# <%= button_tag "Refuse All", type: "submit", name: "status", value: "refuser" %> %>
+  <%# </div> %>
+<%# <% end %> %>
           </div>
         <% end %>
       <% end %>
