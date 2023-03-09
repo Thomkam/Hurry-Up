@@ -3,35 +3,39 @@
 </div>
 
 <div class= "container">
-  <p>Vos urgences a gerer</p>
+  <%= link_to "table", sitting_area_path(@sitting_areas.first) %>
   <div class="">
     <% @sitting_areas.each do |sitting_area| %>
-      <%= link_to sitting_area_path(sitting_area), class: "text-decoration-none text-black" do  %>
-        <% unless sitting_area.orders.empty? %>
+        <% unless sitting_area.orders.where(status: "en attente").empty? %>
+
           <div>
             <div class="order_card px-10">
-              <p>table <%=sitting_area.sitting_area_number%>
+              <%= link_to sitting_area_path(sitting_area), class: "text-decoration-none text-black" do  %>
+                <p>table <%=sitting_area.sitting_area_number%>
+              <% end %>
               <div class="mx-5" style="">
                 <% sitting_area.orders.each do |order|%>
-                  <div class="d-flex justify-content-between " style="">
-                    <p><%=order.item.name%> x<%=order.quantity%></p>
-                    <p>time</p>
-                    <div class="d-flex justify-content-between">
-                      <%= form_with model: order do |f| %>
-                        <%= f.hidden_field :status, value:"accepter" %>
-                        <%= f.submit value:"v" %>
-                      <% end %>
-                      <%= form_with model: order do |f| %>
-                        <%= f.hidden_field :status, value:"refuser" %>
-                        <%= f.submit value:"x" %>
-                      <% end %>
+                  <% if order.status == "en attente" %>
+                    <div class="d-flex justify-content-between " style="">
+                      <p><%=order.item.name%> x<%=order.quantity%></p>
+                      <p>time</p>
+                      <%= order.status %>
+                      <div class="d-flex justify-content-between">
+                        <%= form_with model: order do |f| %>
+                          <%= f.hidden_field :status, value:"accepter" %>
+                          <%= f.submit value:"v" %>
+                        <% end %>
+                        <%= form_with model: order do |f| %>
+                          <%= f.hidden_field :status, value:"refuser" %>
+                          <%= f.submit value:"x" %>
+                        <% end %>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
           </div>
-
           <%# all check button%>
           <div class="d-flex justify-content-end mt-2 mx-5 p-1 ddzd">
             <p>All</p>
@@ -40,7 +44,5 @@
           </div>
         <% end %>
       <% end %>
-    <% end %>
   </div>
-
 </div>

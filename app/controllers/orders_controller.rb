@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def add_order
-    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id], status: "en atttente")
+    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id])
     if @order.nil?
       @order = Order.new(status: "en attente", quantity: 1)
       @order.item = Item.find(params[:item_id])
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   end
 
   def remove_order
-    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id], status: "en attente") # Find order
+    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id]) # Find order
     if @order.quantity > 1
       @order.quantity -= 1 # decrement quantity
       @order.save # save
@@ -40,7 +40,9 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.status = params[:order][:status]
+    @order.employee = current_user.id
     @order.save
+    redirect_to restaurant_path(@order.sitting_area.restaurant), status: :unprocessable_entity
   end
 
   def destroy
@@ -60,6 +62,4 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:quantity, :item_id)
   end
-
-
 end
