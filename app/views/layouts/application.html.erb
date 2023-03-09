@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" unless controller_name == "sitting_areas" %>
+    <%= render "shared/navbar" unless controller_name == "sitting_areas" || (controller_name == "orders" && action_name == "new") %>
     <div class="container-fluid">
       <%= yield %>
       <%= render "shared/flashes" %>

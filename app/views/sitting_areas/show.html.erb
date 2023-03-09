@@ -49,36 +49,5 @@
   </div>
 
 <% if @sitting_area.orders.any? %>
-  <hr>
-  <h5 class="mb-0 py-1">Historique des commandes</h5>
-  <% @passed_orders.each do |order| %>
-    <div class="py-1">
-      <div class="d-flex justify-content-between">
-        <div>
-          <%= order.quantity %> <%= order.item.name %>
-          <%= order.find_time %>
-        </div>
-        <div class="badge bg-secondary"><%= order.status %></div>
-      </div>
-      <small>(il y a <%= order.find_time %>) </small><small>pris en charge par <%= User.find(order.employee).email.capitalize.split("@")[0] %></small>
-    </div>
-  <% end %>
-
-  <hr>
-  <h5 class="mb-0 py-1">Commandes en attente</h5>
-  <% @pending_orders.each do |order| %>
-    <div class="py-1">
-      <div class="d-flex justify-content-between">
-        <%= order.quantity %> <%= order.item.name %>
-        <div class="badge bg-secondary"><%= order.status %></div>
-      </div>
-      <div class="d-flex justify-content-between">
-        <small>(il y a <%= order.find_time %>)</small>
-        <div class="d-flex">
-          <%= link_to "supprimer", order_path(order), class: "disabled pe-2", data: {turbo_method: :delete, turbo_confirm: 'Are you sure'} %>
-          <%= link_to "modifier", new_sitting_area_order_path(@sitting_area, category_id: order.category.id) %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
 <% end %>
