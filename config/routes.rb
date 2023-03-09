@@ -14,10 +14,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders, only: %i[update destroy]
-  resources :orders do
+  resources :orders, only: %i[update destroy] do
     member do
       post :toggle_status
+    end
+    collection do
+      patch :update_all_orders
     end
   end
 
