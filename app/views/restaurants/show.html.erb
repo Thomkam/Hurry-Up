@@ -2,47 +2,35 @@
   <h1 class="text-white ps-3"><%= @restaurant.name %></h1>
 </div>
 
-<div class= "container">
-  <%= link_to "table", sitting_area_path(@sitting_areas.first) %>
-  <div class="">
-    <% @sitting_areas.each do |sitting_area| %>
-        <% unless sitting_area.orders.where(status: "en attente").empty? %>
-
-          <div>
-            <div class="order_card px-10">
-              <%= link_to sitting_area_path(sitting_area), class: "text-decoration-none text-black" do  %>
-                <p>table <%=sitting_area.sitting_area_number%>
-              <% end %>
-              <div class="mx-5" style="">
-                <% sitting_area.orders.each do |order|%>
-                  <% if order.status == "en attente" %>
-                    <div class="d-flex justify-content-between " style="">
-                      <p><%=order.item.name%> x<%=order.quantity%></p>
-                      <p>time</p>
-                      <%= order.status %>
-                      <div class="d-flex justify-content-between">
-                        <%= form_with model: order do |f| %>
-                          <%= f.hidden_field :status, value:"accepter" %>
-                          <%= f.submit value:"v" %>
-                        <% end %>
-                        <%= form_with model: order do |f| %>
-                          <%= f.hidden_field :status, value:"refuser" %>
-                          <%= f.submit value:"x" %>
-                        <% end %>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
+<%= link_to "table", sitting_area_path(@sitting_areas.first) %>
+<% @sitting_areas.each do |sitting_area| %>
+  <% unless sitting_area.orders.where(status: "en attente").empty? %>
+  <div class="rounded-4 bg-light px-2 py-3 my-2">
+    <%= link_to sitting_area_path(sitting_area), class: "text-decoration-none text-black" do  %>
+      <h3>Table <%= sitting_area.sitting_area_number %> :</h3>
+    <% end %>
+    <% sitting_area.orders.each do |order|%>
+      <% if order.status == "en attente" %>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-column align-items-start">
+            <div>
+              <%= order.quantity %> <%= order.item.name %>
             </div>
+            <div class="badge bg-secondary"><%= order.status %></div>
           </div>
-          <%# all check button%>
-          <div class="d-flex justify-content-end mt-2 mx-5 p-1 ddzd">
-            <p>All</p>
-            <button class="update_order_status">v</button>
-            <button>x</button>
+          <div class="d-flex justify-content-between">
+            <%= form_with model: order do |f| %>
+              <%= f.hidden_field :status, value: "refuser" %>
+              <%= f.submit value: "X", class: 'btn btn-secondary rounded-circle me-2' %>
+            <% end %>
+            <%= form_with model: order do |f| %>
+              <%= f.hidden_field :status, value: "accepter" %>
+              <%= f.submit value: "V", class: 'btn btn-primary rounded-circle' %>
+            <% end %>
           </div>
-        <% end %>
+        </div>
       <% end %>
+    <% end %>
   </div>
-</div>
+  <% end %>
+<% end %>
