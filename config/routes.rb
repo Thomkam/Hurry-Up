@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       post :toggle_status
     end
     collection do
-      patch :update_all_orders
+      patch :update_all
     end
   end
 

@@ -2,42 +2,48 @@
   <h1 class="text-white ps-3">  <%= link_to "#{ @restaurant.name}", sitting_area_path(@sitting_areas.first) %></h1>
 </div>
 
-<div class= "container">
-  <div class="">
-    <% @sitting_areas.each do |sitting_area| %>
-      <% unless sitting_area.orders.where(status: "en attente").empty? %>
-        <div>
-          <div class="order_card px-10">
-            <%= link_to sitting_area_path(sitting_area), class: "text-decoration-none text-black" do  %>
-              <p>table <%=sitting_area.sitting_area_number%>
-            <% end %>
-            <div class="mx-5" style="">
-              <% sitting_area.orders.each do |order|%>
-                <% if order.status == "en attente" %>
-                  <div class="d-flex justify-content-between " style="">
-                    <p><%=order.item.name%> x<%=order.quantity%></p>
-                    <p>time</p>
-                    <%= order.status %>
-                    <div class="d-flex justify-content-between">
-                      <%= form_with model: order do |f| %>
-                        <%= f.hidden_field :status, value:"accepter" %>
-                        <%= f.submit value:"v" %>
-                      <% end %>
-                      <%= form_with model: order do |f| %>
-                        <%= f.hidden_field :status, value:"refuser" %>
-                        <%= f.submit value:"x" %>
-                      <% end %>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
+<%= link_to "table", sitting_area_path(@sitting_areas.first) %>
+<% @sitting_areas.each do |sitting_area| %>
+  <% unless sitting_area.orders.where(status: "en attente").empty? %>
+  <div class="rounded-4 bg-light px-2 py-3 my-2">
+    <%= link_to sitting_area_path(sitting_area), class: "text-decoration-none text-black" do  %>
+      <h3>Table <%= sitting_area.sitting_area_number %> :</h3>
+    <% end %>
+    <% sitting_area.orders.each do |order|%>
+      <% if order.status == "en attente" %>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex flex-column align-items-start">
+            <div>
+              <%= order.quantity %> <%= order.item.name %>
             </div>
+            <div class="badge bg-secondary"><%= order.status %></div>
           </div>
-          <div class="badge bg-secondary"><%= order.status %></div>
+          <div class="d-flex justify-content-between">
+            <%= form_with model: order do |f| %>
+              <%= f.hidden_field :status, value: "refuser" %>
+              <%= f.submit value: "X", class: 'btn btn-secondary rounded-circle me-2' %>
+            <% end %>
+            <%= form_with model: order do |f| %>
+              <%= f.hidden_field :status, value: "accepter" %>
+              <%= f.submit value: "V", class: 'btn btn-primary rounded-circle' %>
+            <% end %>
+          </div>
         </div>
-        <div class="d-flex justify-content-end mt-2 mx-5 p-1 ddzd">
-        </div>
+        <div class="d-flex justify-content-end">
+            <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
+              <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
+              <%= f.hidden_field :status,  value: 'accepter' %>
+              <%= f.submit 'ALL' %>
+            <% end %>
+
+            <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
+              <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
+              <%= f.hidden_field :status,  value: 'refuser' %>
+              <%= f.submit 'decline' %>
+            <% end %>
+          </div>
       <% end %>
     <% end %>
   </div>
-</div>
+  <% end %>
+<% end %>
