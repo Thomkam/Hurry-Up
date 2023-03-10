@@ -57,13 +57,12 @@ class OrdersController < ApplicationController
     # @sitting_areas = @order.sitting_areas
   end
 
-  # def update_all_orders
-  #   status = params[:status]
-  #   @sitting_areas.each do |sitting_area|
-  #     sitting_area.orders.where(status: "en attente").update_all(status: status)
-  #   end
-  #   redirect_to restaurant_path(@order.sitting_area.restaurant), status: :unprocessable_entity
-  # end
+  def update_all
+    status = params[:sitting_area][:status]
+    @sitting_area = SittingArea.find(params[:sitting_area][:sitting_area].to_i)
+    @sitting_area.orders.where(status: "en attente").update_all(status: status, employee: current_user.id)
+    redirect_to restaurant_path(@sitting_area.restaurant), status: :unprocessable_entity
+  end
 
   private
 
