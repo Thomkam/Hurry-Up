@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def add_order
-    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id])
+    @order = Order.find_by(item_id: params[:item_id].to_i, sitting_area_id: params[:sitting_area_id].to_i, status: "en attente")
     if @order.nil?
       @order = Order.new(status: "en attente", quantity: 1)
       @order.item = Item.find(params[:item_id])
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   end
 
   def remove_order
-    @order = Order.find_by(item_id: params[:item_id], sitting_area_id: params[:sitting_area_id]) # Find order
+    @order = Order.find_by(item_id: params[:item_id].to_i, sitting_area_id: params[:sitting_area_id].to_i, status: "en attente") # Find order
     if @order.quantity > 1
       @order.quantity -= 1 # decrement quantity
       @order.save # save
@@ -56,6 +56,14 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     # @sitting_areas = @order.sitting_areas
   end
+
+  # def update_all_orders
+  #   status = params[:status]
+  #   @sitting_areas.each do |sitting_area|
+  #     sitting_area.orders.where(status: "en attente").update_all(status: status)
+  #   end
+  #   redirect_to restaurant_path(@order.sitting_area.restaurant), status: :unprocessable_entity
+  # end
 
   private
 

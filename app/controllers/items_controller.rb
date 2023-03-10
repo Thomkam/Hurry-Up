@@ -1,21 +1,23 @@
 class ItemsController < ApplicationController
-  def new
-    @item = Item.new
-  end
-
   def create
-    @item = item.new(item_params)
-    @item.user = current_user
+    @item = Item.new(item_params)
+    @sitting_area = SittingArea.find(params[:sitting_area_id])
+    @item.restaurant = @sitting_area.restaurant
+    @item.custom = "true"
+    @item.category = Category.find(params[:item][:category].to_i)
     if @item.save
-      redirect_to items_path, notice: 'item was successfully created 😎.'
+      @order = Order.new(quantity: params[:item][:quantity], item: @item, sitting_area: @sitting_area)
+      @order.status = "en attente"
+      @order.save
+      redirect_to sitting_area_path(@sitting_area), notice: "#{@item.name} a été envoyée 😎."
     else
-      render :new
+      render 'sitting_areas/show'
     end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :custom)
+    params.require(:item).permit(:name)
   end
 end
