@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/assign_restaurant', to: 'pages#assign_restaurant'
 
   resources :sitting_areas, only: [:show] do
+    resources :items, only: %i[create]
     resources :orders, only: %i[new show] do
       collection do
         get :add_order
@@ -24,5 +25,4 @@ Rails.application.routes.draw do
   end
 
   resources :restaurants, except: [:index]
-  resources :items, only: %i[new create]
 end

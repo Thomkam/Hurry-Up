@@ -1,18 +1,4 @@
 <hr>
-<h5 class="mb-0 py-1">Historique des commandes</h5>
-<% passed_orders.each do |order| %>
-  <div class="py-1">
-    <div class="d-flex justify-content-between">
-      <div>
-        <%= order.quantity %> <%= order.item.name %>
-      </div>
-      <div class="badge bg-secondary"><%= format_status(order.status) %></div>
-    </div>
-    <small>(il y a <%= order.find_time %>) </small><small>pris en charge par <%= User.find(order.employee).email.capitalize.split("@")[0] %></small>
-  </div>
-<% end %>
-
-<hr>
 <h5 class="mb-0 py-1">Commandes en attente</h5>
 <% pending_orders.each do |order| %>
   <div class="py-1">
@@ -27,5 +13,21 @@
         <%= link_to "modifier", new_sitting_area_order_path(@sitting_area, category_id: order.category.id) %>
       </div>
     </div>
+  </div>
+<% end %>
+
+<hr>
+<h5 class="mb-0 py-1">Historique des commandes</h5>
+<% passed_orders.each do |order| %>
+  <div class="py-1">
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= order.quantity %> <%= order.item.name %>
+      </div>
+      <div class="badge bg-secondary"><%= format_status(order.status) %></div>
+    </div>
+    <% if !order.employee.nil? %>
+    <small>(il y a <%= order.find_time %>) </small><small>pris en charge par <%= User.find(order.employee).email.capitalize.split("@")[0] %></small>
+    <% end %>
   </div>
 <% end %>
