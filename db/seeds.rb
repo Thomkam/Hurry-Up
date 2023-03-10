@@ -96,9 +96,6 @@ itemverres3 = Item.new(name: "flute à champagne",description: "",custom:"")
 itemverres3.category = category5
 itemverres3.save!
 
-category6 = Category.new(name: "Autres demandes")
-category6.save!
-
 # CREATE RESTAURANT AND SITTING AREA
 
 restaurant1 = Restaurant.new(name: "Riwan's spices",address: "the best place",number_of_sitting_areas: 2)
