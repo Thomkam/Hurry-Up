@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
   root to: "pages#home"
 
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders, only: %i[update destroy] do
+  resources :orders, only: %i[update destroy ] do
     member do
       post :toggle_status
     end

@@ -18,6 +18,7 @@ class RestaurantsController < ApplicationController
     end
     if @restaurant.save
       @restaurant.users << current_user
+      current_user.update(status: "owner") # ajout du status
       redirect_to restaurant_path(@restaurant), notice: 'restaurant was successfully created 😎.'
     else
       render :new

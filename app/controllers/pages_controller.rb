@@ -12,6 +12,7 @@ class PagesController < ApplicationController
   def assign_restaurant
     @restaurant = Restaurant.find(params[:restaurant].to_i)
     current_user.restaurant = @restaurant
+    current_user.status = "employee" # MAJ status employee
     current_user.save
     redirect_to restaurant_path(@restaurant)
   end

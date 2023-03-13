@@ -45,7 +45,17 @@
                 <% end %>
               </div>
             </div>
-  </div>
+   </div>
+    <% end %>
   <% end %>
-<% end %>
+
+<div>
+    <% @restaurant.orders.where(status: "accepter").each do |order| %>
+    <% end %>
 </div>
+</div>
+   <%# <div>
+    <% if order.status == "en attente" %>
+    <%# <%= order.quantity %>
+    <%# <%= order.item.name %>
+   <%# </div> %>
