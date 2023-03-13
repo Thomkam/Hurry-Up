@@ -126,7 +126,7 @@ sitting_area4 = SittingArea.new(sitting_area_number: 2)
 sitting_area4.restaurant = restaurant2
 sitting_area4.save!
 
-restaurant3 = Restaurant.new(name: "Thomas's nugs",address: "the far est",number_of_sitting_areas: 2)
+restaurant3 = Restaurant.new(name: "Thomas's nugs",address: "the far est", number_of_sitting_areas: 2)
 file = URI.open("https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=780&q=80")
 restaurant3.image.attach(io: file, filename: "nes.png", content_type: "image/png")
 restaurant3.save!
@@ -141,9 +141,9 @@ sitting_area6.save!
 
 # CREATE USER
 
-riwan = User.create!(email: "riwan@example.com", password: "password", restaurant: restaurant1, status: "owner")
-thomas = User.create!(email: "thomas@example.com", password: "password", restaurant: restaurant2, status: "owner")
-benoit = User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant2, status: "employee")
+riwan = User.create!(email: "riwan@example.com", password: "password", restaurant: restaurant1, status: "owner", first_name: "Riwan" )
+thomas = User.create!(email: "thomas@example.com", password: "password", restaurant: restaurant2, status: "owner", first_name: "Thomas" )
+benoit = User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant2, status: "employee", first_name: "Benoît" )
 
 # CREATE ORDERS
 
