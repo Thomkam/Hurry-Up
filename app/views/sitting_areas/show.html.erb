@@ -14,7 +14,7 @@
 
 <h2 class="py-2 text-center"> Que pouvons-nous faire pour vous ? </h2>
 
-<div class="row mx-0">
+<div class="row mx-0" style="text-decoration: none;">
   <% Category.all.each do |category| %>
     <div class="col-6">
       <%= link_to new_sitting_area_order_path(@sitting_area, category_id: category.id), class: "d-block btn btn-primary mb-5 py-3", style: "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" do %>
