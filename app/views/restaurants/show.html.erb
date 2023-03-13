@@ -102,3 +102,18 @@
     <%# <%= order.quantity %>
     <%# <%= order.item.name %>
    <%# </div> %>
+      <%# <div>
+        <% accepted_orders = @restaurant.orders.where(status: "accepter") %>
+        <%# <% accepted_orders.each do |order| %>
+        <%# Commande accepted par <%= User.find(order.employee).first_name %>
+        <%# , quantity: <%= order.quantity %>
+        <%# <% end %>
+      <%# </div>
+
+      <div>
+        <% refused_orders = @restaurant.orders.where(status: "refuser") %>
+        <%# <% refused_orders.each do |order| %>
+        <%# Commande refusé par <%= User.find(order.employee).first_name %>
+        <%# , quantity: <%= order.quantity %> %
+        <%# <% end %>
+      <%# </div> %>
