@@ -15,7 +15,7 @@
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
       <% @sitting_areas.each do |sitting_area| %>
         <% unless sitting_area.orders.where(status: "en attente").empty? %>
-        <div class="rounded-4 bg-light px-2 py-3 my-2">
+          <div class="rounded-4 bg-light px-2 py-3 my-2">
              <h3>Table <%= sitting_area.sitting_area_number %> :</h3>
            <% sitting_area.orders.each do |order|%>
             <% if order.status == "en attente" %>
@@ -66,14 +66,46 @@
       </div>
   </div>
 
+
+   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+      <% @users.each do |user| %>
+
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
     <% if current_user.status = "owner" %>
       <% @users.each do |user| %>
       <div class = "d-flex justify-content-between">
+
         <div>
-          <%=user.email.capitalize.split("@")[0] %>
-          <p>NUMBER commandes accepter</p>
+          <div>
+            <%=user.email.capitalize.split("@")[0] %>
+            <p>NUMBER commandes accepter</p>
+          </div>
         </div>
+
+      <% end %>
+
+      <div>
+        <% accepted_orders = @restaurant.orders.where(status: "accepter") %>
+        <% accepted_orders.each do |order| %>
+        Commande accepted par <%= User.find(order.employee).first_name %>, quantity: <%= order.quantity %>
+        <% end %>
+      </div>
+
+      <div>
+        <% refused_orders = @restaurant.orders.where(status: "refuser") %>
+        <% refused_orders.each do |order| %>
+        Commande refusé par <%= User.find(order.employee).first_name %>, quantity: <%= order.quantity %>
+        <% end %>
+      </div>
+
+      <%# <div> %>
+        <%# <% pending_orders = @restaurant.orders.where(status: "en attente") %>
+        <%# <% pending_orders.each do |order| %>
+        <%# Commande en attente par <%= User.find %>
+        <%# , quantity: <%= order.quantity %>
+        <%# <% end %>
+      <%# </div> %>
+
               <div class="nav-item dropdown">
               <%= image_tag "https://img1.freepng.fr/20180701/btv/kisspng-computer-icons-avatar-user-profile-man-avatars-5b38adb9f113b0.3674732815304411459875.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -88,23 +120,7 @@
     <% else %>
     eqfsfd
     <% end %>
+
    </div>
 
-<div>
-    <% @restaurant.orders.where(status: "accepter").each do |order| %>
-    <% end %>
-    </div>
-    <div>
-    <% @restaurant.orders.where(status: "refuser").each do |order| %>
-    <% end %>
-  </div>
-      <div>
-    <% @restaurant.orders.where(status: "en attente").each do |order| %>
-    <% end %>
-  </div>
 </div>
-   <%# <div>
-    <% if order.status == "en attente" %>
-    <%# <%= order.quantity %>
-    <%# <%= order.item.name %>
-   <%# </div> %>
