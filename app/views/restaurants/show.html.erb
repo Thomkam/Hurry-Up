@@ -26,10 +26,10 @@
                     <div class="badge bg-secondary"><%= order.status %></div>
                     <% elapsed_time = Time.current - order.created_at %>
                     <%# HERE TO CHANGE THE TIME TO TURN IT RED %>
-                    <% if elapsed_time >= 2.minutes %>
+                    <% if elapsed_time >= 5.minutes %>
                       <small class="elapsed-time-red">(il y a <%= order.find_time %>)</small>
                     <%# HERE TO CHANGE THE TIME TO TURN IT ORANGE %>
-                    <% elsif elapsed_time >= 1.minute %>
+                    <% elsif elapsed_time >= 2.minute %>
                       <small class="elapsed-time-orange">(il y a <%= order.find_time %>)</small>
                     <% else %>
                       <small>(il y a <%= order.find_time %>)</small>
