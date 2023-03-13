@@ -14,7 +14,10 @@
               <div>
                 <%= order.quantity %> <%= order.item.name %>
               </div>
-              <div class="badge bg-secondary"><%= order.status %></div>
+              <div class="d-flex justify-content-between">
+                <div class="badge bg-secondary"><%= order.status %></div>
+                <small>(il y a <%= order.find_time %>)</small>
+              </div>
             </div>
             <div class="d-flex justify-content-between">
               <%= form_with model: order do |f| %>
