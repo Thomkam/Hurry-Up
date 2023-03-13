@@ -7,7 +7,7 @@
       <div class="badge bg-secondary"><%= format_status(order.status) %></div>
     </div>
     <div class="d-flex justify-content-between">
-      <small>(il y a <%= order.find_time %>)</small>
+      <small>(Add <%= order.find_time %>)</small>
       <div class="d-flex">
         <%= link_to "supprimer", order_path(order), class: "disabled pe-2", data: {turbo_method: :delete, turbo_confirm: 'Are you sure'} %>
         <%= link_to "modifier", new_sitting_area_order_path(@sitting_area, category_id: order.category.id) %>
@@ -27,7 +27,7 @@
       <div class="badge bg-secondary"><%= format_status(order.status) %></div>
     </div>
     <% if !order.employee.nil? %>
-    <small>(il y a <%= order.find_time %>) </small><small>pris en charge par <%= User.find(order.employee).email.capitalize.split("@")[0] %></small>
+    <small>(Add <%= order.find_time %>) </small><small>pris en charge par <%= User.find(order.employee).email.capitalize.split("@")[0] %></small>
     <% end %>
   </div>
 <% end %>
