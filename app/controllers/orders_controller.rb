@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @pending_orders = @sitting_area.orders.where(status: "en attente")
     @passed_orders = @sitting_area.orders - @pending_orders
+    @restaurant = @sitting_area.restaurant
   end
 
   def add_order
