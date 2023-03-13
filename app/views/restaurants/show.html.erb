@@ -72,14 +72,27 @@
       <div class = "">
 
         <%=user.email.capitalize.split("@")[0] %>
-        <p>NUMBER commandes accepter</p>
+        <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes traitées
+        <div>
+          <% accepted_orders = @restaurant.orders.where(status: "accepter" , employee: user.id) %>
+          <% accepted_orders.each do |order| %>
+            Commande accepted : <%= order.quantity %>
+          <% end %>
+        </div>
+        <div>
+          <% refused_orders = @restaurant.orders.where(status: "refuser", employee: user.id) %>
+          <% refused_orders.each do |order| %>
+            Commande refusée: <%= order.quantity %>
+          <% end %>
+        </div>
+
         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
           V
         </button>
         <div class="collapse" id="collapseExample">
           <div class="card card-body">
             <% @orders.where(employee: user.id).each do |order| %>
-            <%= order.item.name %>
+            <p><%= order.item.name %>, </p>
             <% end %>
           </div>
         </div>
@@ -92,18 +105,3 @@
    </div>
 
 </div>
-
-       <%# <div> %
-        <%# <% accepted_orders = @restaurant.orders.where(status: "accepter") %>
-        <%# <% accepted_orders.each do |order| %>
-        <%# <% Commande accepted par <%= User.find(order.employee).first_name  quantity: <%= order.quantity %>
-        <%# <% <% end %>
-       <%# </div> %>
-
-      <%# <div>
-        <% refused_orders = @restaurant.orders.where(status: "refuser") %>
-        <%# <% refused_orders.each do |order| %>
-        <%# Commande refusé par <%= User.find(order.employee).first_name %>
-        <%# , quantity: <%= order.quantity %>
-        <%# <% end %>
-      <%# </div> %>
