@@ -66,6 +66,38 @@
       </div>
   </div>
 
+   <%# <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+      <% @users.each do |user| %>
+        <%# <div> %>
+          <%# <div> %>
+            <%# <%=user.email.capitalize.split("@")[0] %>
+            <%# <p>NUMBER commandes accepter</p> %>
+          <%# </div>
+        </div>
+      <% end %>
+
+      <div class="container center-text">
+        <% accepted_orders = @restaurant.orders.where(status: "accepter") %>
+        <% accepted_orders.each do |order| %>
+          <p> </span>Il y a <%= order.quantity %> commandes acceptées par <span class="name"><%= User.find(order.employee).first_name %></p>
+        <% end %>
+      </div>
+
+      <div class="container center-text">
+        <% refused_orders = @restaurant.orders.where(status: "refuser") %>
+        <% refused_orders.each do |order| %>
+          <p> </span>Il y a <%= order.quantity %> commandes refusées par <span class="name"><%= User.find(order.employee).first_name %></p>
+        <% end %>
+      </div>
+
+      <%# <div> %>
+        <%# <% pending_orders = @restaurant.orders.where(status: "en attente") %>
+        <%# <% pending_orders.each do |order| %>
+        <%# Commande en attente par <%= User.find %>
+        <%# , quantity: <%= order.quantity %>
+        <%# <% end %>
+      <%# </div> %>
+
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
     <% if current_user.status === "owner" %>
       <% @users.each do |user| %>
