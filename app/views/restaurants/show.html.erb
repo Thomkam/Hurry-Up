@@ -69,39 +69,10 @@
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
     <% if current_user.status === "owner" %>
       <% @users.each do |user| %>
-      <div class = "">
-
-        <%=user.email.capitalize.split("@")[0] %>
-        <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes traitées
-        <div>
-          <% accepted_orders = @restaurant.orders.where(status: "accepter" , employee: user.id) %>
-          <% accepted_orders.each do |order| %>
-            Commande accepted : <%= order.quantity %>
-          <% end %>
-        </div>
-        <div>
-          <% refused_orders = @restaurant.orders.where(status: "refuser", employee: user.id) %>
-          <% refused_orders.each do |order| %>
-            Commande refusée: <%= order.quantity %>
-          <% end %>
-        </div>
-
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          V
-        </button>
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-            <% @orders.where(employee: user.id).each do |order| %>
-            <p><%= order.item.name %>, </p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <hr>
+      <%= render "shared/orders_detail", user: user %>
       <% end %>
     <% else %>
-    eqfsfd
+      <%= render "shared/orders_detail", user: current_user %>
     <% end %>
    </div>
-
 </div>

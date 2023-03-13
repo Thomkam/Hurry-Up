@@ -1,0 +1,21 @@
+<div>
+  <p><%= user.email.capitalize.split("@")[0] %>
+  a traitées <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes </p>
+  <div>
+      Commandes acceptées : <%= @restaurant.orders.where(status: "accepter" , employee: user.id).count %>
+  </div>
+  <div>
+    Commandes refusées : <%= @restaurant.orders.where(status: "refuser", employee: user.id).count %>
+  </div>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= user.id %>" aria-expanded="false" aria-controls="collapseExample">
+    V
+  </button>
+  <div class="collapse" id="collapseExample-<%= user.id %>">
+    <div class="card card-body">
+      <% @orders.where(employee: user.id).select { |order| order.restaurant == @restaurant }.each do |order| %>
+      <p><%= order.item.name %>, </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
