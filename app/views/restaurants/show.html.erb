@@ -20,6 +20,7 @@
            <% sitting_area.orders.each do |order|%>
             <% if order.status == "en attente" %>
               <div class="d-flex justify-content-between">
+
                 <div class="d-flex flex-column align-items-start">
                   <div>
                     <%= order.quantity %> <%= order.item.name %>
@@ -59,6 +60,7 @@
                     </div>
                   </div>
       </div>
+
       <% end %>
       <% end %>
       </div>

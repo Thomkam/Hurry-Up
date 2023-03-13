@@ -17,7 +17,7 @@
 <div class="row mx-0" style="text-decoration: none;">
   <% Category.all.each do |category| %>
     <div class="col-6">
-      <%= link_to new_sitting_area_order_path(@sitting_area, category_id: category.id), class: "d-block btn btn-primary mb-5 py-3", style: "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" do %>
+      <%= link_to new_sitting_area_order_path(@sitting_area, category_id: category.id), class: "d-block btn #{category.name}-background mb-5 py-3", style: "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" do %>
         <span>
           <%= image_tag "#{category.name}.png", style: 'height:70px;width:70px;'%>
           <br>
@@ -28,7 +28,7 @@
   <% end %>
   <div class="col-6 text-center">
     <!-- Button trigger modal -->
-    <div type="button" class= "d-block btn btn-primary mb-5 py-3", style= "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div type="button" class= "autre d-block btn btn-primary mb-5 py-3", style= "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <%= image_tag "custom.png", alt:"Custom Icon", style:"height:70px;width:70px;position:relative;left:6px"%>
       <br>
       Autres
