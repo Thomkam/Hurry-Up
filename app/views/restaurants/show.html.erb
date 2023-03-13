@@ -80,19 +80,19 @@
         </div>
       <% end %>
 
-      <div class="container center-text">
+      <%# <div class="container center-text">
         <% accepted_orders = @restaurant.orders.where(status: "accepter") %>
-        <% accepted_orders.each do |order| %>
-          <p> </span>Il y a <%= order.quantity %> commandes acceptées par <span class="name"><%= User.find(order.employee).first_name %></p>
-        <% end %>
-      </div>
+        <%# <% accepted_orders.each do |order| %>
+          <%# <p> </span>Il y a <%= order.quantity commandes acceptées par <span class="name"><%= User.find(order.employee).first_name</p> %>
+        <%# <% end %>
+      <%# </div>  %>
 
-      <div class="container center-text">
+      <%# <div class="container center-text">
         <% refused_orders = @restaurant.orders.where(status: "refuser") %>
-        <% refused_orders.each do |order| %>
-          <p> </span>Il y a <%= order.quantity %> commandes refusées par <span class="name"><%= User.find(order.employee).first_name %></p>
-        <% end %>
-      </div>
+        <%# <% refused_orders.each do |order| %>
+          <%# <p> </span>Il y a <%= order.quantity commandes refusées par <span class="name"><%= User.find(order.employee).first_name</p> %>
+        <%# <% end %>
+      <%# </div>  %>
 
       <%# <div> %>
         <%# <% pending_orders = @restaurant.orders.where(status: "en attente") %>
@@ -108,7 +108,7 @@
       <div class = "">
 
         <%=user.email.capitalize.split("@")[0] %>
-        <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes traitées
+        a traité <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes
         <div>
           <% accepted_orders = @restaurant.orders.where(status: "accepter" , employee: user.id) %>
           <% accepted_orders.each do |order| %>
