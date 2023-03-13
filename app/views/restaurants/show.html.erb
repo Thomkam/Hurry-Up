@@ -2,7 +2,6 @@
   <h1 class="text-white ps-3 text-center">  <%= link_to "#{ @restaurant.name}", sitting_area_path(@sitting_areas.first), class: "text-decoration-none text-white" %></h1>
 </div>
 
-
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">en cours</button>
@@ -10,14 +9,13 @@
   </div>
 </nav>
 
-
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-      <% @sitting_areas.each do |sitting_area| %>
-        <% unless sitting_area.orders.where(status: "en attente").empty? %>
+    <% @sitting_areas.each do |sitting_area| %>
+      <% unless sitting_area.orders.where(status: "en attente").empty? %>
         <div class="rounded-4 bg-light px-2 py-3 my-2">
-             <h3>Table <%= sitting_area.sitting_area_number %> :</h3>
-           <% sitting_area.orders.each do |order|%>
+          <h3>Table <%= sitting_area.sitting_area_number %> :</h3>
+          <% sitting_area.orders.each do |order|%>
             <% if order.status == "en attente" %>
               <div class="d-flex justify-content-between">
 
@@ -27,7 +25,16 @@
                   </div>
                   <div class="d-flex justify-content-between">
                     <div class="badge bg-secondary"><%= order.status %></div>
-                    <small>(il y a <%= order.find_time %>)</small>
+                    <% elapsed_time = Time.current - order.created_at %>
+                    <%# HERE TO CHANGE THE TIME TO TURN IT RED %>
+                    <% if elapsed_time >= 2.minutes %>
+                      <small class="elapsed-time-red">(il y a <%= order.find_time %>)</small>
+                    <%# HERE TO CHANGE THE TIME TO TURN IT ORANGE %>
+                    <% elsif elapsed_time >= 1.minute %>
+                      <small class="elapsed-time-orange">(il y a <%= order.find_time %>)</small>
+                    <% else %>
+                      <small>(il y a <%= order.find_time %>)</small>
+                    <% end %>
                   </div>
                 </div>
                 <div class="d-flex justify-content-between">
@@ -44,26 +51,24 @@
               <hr class = "my-hr">
             <% end %>
           <% end %>
-          <div class="d-flex justify-content-end ">
-                  <p>ALL</p>
-                    <div class="d-flex " style="  margin-left: 10px;">
-                      <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
-                        <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
-                        <%= f.hidden_field :status,  value: 'refuser' %>
-                        <%= f.submit 'X', class: 'btn btn-secondary rounded-circle me-2' %>
-                      <% end %>
-                      <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
-                        <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
-                        <%= f.hidden_field :status,  value: 'accepter' %>
-                        <%= f.submit 'V', class: 'btn btn-primary rounded-circle'%>
-                      <% end %>
-                    </div>
-                  </div>
-      </div>
-
+          <div class="d-flex justify-content-end">
+            <p>ALL</p>
+            <div class="d-flex " style="  margin-left: 10px;">
+              <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
+                <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
+                <%= f.hidden_field :status,  value: 'refuser' %>
+                <%= f.submit 'X', class: 'btn btn-secondary rounded-circle me-2' %>
+              <% end %>
+              <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
+                <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
+                <%= f.hidden_field :status,  value: 'accepter' %>
+                <%= f.submit 'V', class: 'btn btn-primary rounded-circle'%>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
-      <% end %>
-      </div>
+    <% end %>
   </div>
 
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
@@ -74,5 +79,8 @@
     <% else %>
       <%= render "shared/orders_detail", user: current_user %>
     <% end %>
-   </div>
+  </div>
+
 </div>
+
+
