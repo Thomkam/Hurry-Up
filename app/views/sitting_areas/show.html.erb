@@ -1,62 +1,57 @@
-<div class="row mx-0">
-  <div class= "col-12">
-    <div class="py-5 my-4 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @restaurant.image.key, height: 300, crop: :fill %>'); background size: cover; background-position: center;border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); ">
-      <%= link_to restaurant_path(@restaurant), class: "text-decoration-none text-white" do %>
-      <h1 class="text-white ps-3"><%= @restaurant.name %></h1>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<div>
-<h3 class="text-center"><small><i>Table <%= @sitting_area.sitting_area_number %></i></small></h3>
-</div>
-
-<h2 class="py-2 text-center"> Que pouvons-nous faire pour vous ? </h2>
-
-<div class="row mx-0" style="text-decoration: none;">
-  <% Category.all.each do |category| %>
-    <div class="col-6">
-      <%= link_to new_sitting_area_order_path(@sitting_area, category_id: category.id), class: "d-block btn #{category.name}-background mb-5 py-3", style: "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" do %>
-        <span>
-          <%= image_tag "#{category.name}.png", style: 'height:70px;width:70px;'%>
-          <br>
-          <%= category.name %>
-        </span>
-      <% end %>
-    </div>
+<div class="top-restaurant-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @restaurant.image.key, height: 300, crop: :fill %>');">
+  <h3>Table <%= @sitting_area.sitting_area_number %></h3>
+  <%= link_to restaurant_path(@restaurant), class: "text-decoration-none text-white restoname text-white ps-3" do %>
+    <%= @restaurant.name %>
   <% end %>
-  <div class="col-6 text-center">
-    <!-- Button trigger modal -->
-    <div type="button" class= "autre d-block btn btn-primary mb-5 py-3", style= "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <%= image_tag "custom.png", alt:"Custom Icon", style:"height:70px;width:70px;position:relative;left:6px"%>
-      <br>
-      Autres
-    </div>
-  </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Que voulez vous ?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for :item, url: sitting_area_items_path(@sitting_area), method: :post do |f| %>
-          <%= f.input :name %>
-          <%= f.input :quantity, as: :integer %>
-          <%= f.input :category, collection: Category.all %>
-          <%= f.submit 'envoyer', class: 'btn btn-primary' %>
+<div class="container-fluid">
+  <h2 class="py-2 text-center"> Que pouvons-nous faire pour vous ? </h2>
+
+  <div class="row mx-0" style="text-decoration: none;">
+    <% Category.all.each do |category| %>
+      <div class="col-6">
+        <%= link_to new_sitting_area_order_path(@sitting_area, category_id: category.id), class: "d-block btn #{category.name}-background mb-5 py-3", style: "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" do %>
+          <span>
+            <%= image_tag "#{category.name}.png", style: 'height:70px;width:70px;'%>
+            <br>
+            <%= category.name %>
+          </span>
         <% end %>
       </div>
+    <% end %>
+    <div class="col-6 text-center">
+      <!-- Button trigger modal -->
+      <div type="button" class= "autre d-block btn btn-primary mb-5 py-3", style= "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <%= image_tag "custom.png", alt:"Custom Icon", style:"height:70px;width:70px;position:relative;left:6px"%>
+        <br>
+        Autres
+      </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Que voulez vous ?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for :item, url: sitting_area_items_path(@sitting_area), method: :post do |f| %>
+            <%= f.input :name %>
+            <%= f.input :quantity, as: :integer %>
+            <%= f.input :category, collection: Category.all %>
+            <%= f.submit 'envoyer', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @sitting_area.orders.any? %>
+    <%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
+
+  <% end %>
 </div>
-
-<% if @sitting_area.orders.any? %>
-  <%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
-
-<% end %>
