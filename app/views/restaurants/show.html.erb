@@ -82,7 +82,18 @@
     <%# <% end %>
    </div>
 
-</div>
+<div>
+    <% @restaurant.orders.where(status: "accepter").each do |order| %>
+    <% end %>
+    </div>
+    <div>
+    <% @restaurant.orders.where(status: "refuser").each do |order| %>
+    <% end %>
+  </div>
+      <div>
+    <% @restaurant.orders.where(status: "en attente").each do |order| %>
+    <% end %>
+  </div>
 </div>
    <%# <div>
     <% if order.status == "en attente" %>
