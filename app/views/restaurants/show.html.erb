@@ -1,4 +1,4 @@
-<div class="py-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @restaurant.image.key, height: 300, crop: :fill %>');: cover; background-position: center;">
+<div class="py-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @restaurant.image.key, height: 300, crop: :fill %>'); background size: cover; background-position: center;">
   <h1 class="text-white ps-3 text-center">  <%= link_to "#{ @restaurant.name}", sitting_area_path(@sitting_areas.first), class: "text-decoration-none text-white" %></h1>
 </div>
 
@@ -18,6 +18,7 @@
           <% sitting_area.orders.each do |order|%>
             <% if order.status == "en attente" %>
               <div class="d-flex justify-content-between">
+
                 <div class="d-flex flex-column align-items-start">
                   <div>
                     <%= order.quantity %> <%= order.item.name %>
@@ -50,7 +51,7 @@
               <hr class = "my-hr">
             <% end %>
           <% end %>
-          <div class="d-flex justify-content-end ">
+          <div class="d-flex justify-content-end">
             <p>ALL</p>
             <div class="d-flex " style="  margin-left: 10px;">
               <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
@@ -69,73 +70,17 @@
       <% end %>
     <% end %>
   </div>
-</div>
-   <%# <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-      <% @users.each do |user| %>
-        <%# <div> %>
-          <%# <div> %>
-            <%# <%=user.email.capitalize.split("@")[0] %>
-            <%# <p>NUMBER commandes accepter</p> %>
-          <%# </div>
-        </div>
-      <% end %>
-
-      <div class="container center-text">
-        <% accepted_orders = @restaurant.orders.where(status: "accepter") %>
-        <% accepted_orders.each do |order| %>
-          <p> </span>Il y a <%= order.quantity %> commandes acceptées par <span class="name"><%= User.find(order.employee).first_name %></p>
-        <% end %>
-      </div>
-
-      <div class="container center-text">
-        <% refused_orders = @restaurant.orders.where(status: "refuser") %>
-        <% refused_orders.each do |order| %>
-          <p> </span>Il y a <%= order.quantity %> commandes refusées par <span class="name"><%= User.find(order.employee).first_name %></p>
-        <% end %>
-      </div>
-
-      <%# <div> %>
-        <%# <% pending_orders = @restaurant.orders.where(status: "en attente") %>
-        <%# <% pending_orders.each do |order| %>
-        <%# Commande en attente par <%= User.find %>
-        <%# , quantity: <%= order.quantity %>
-        <%# <% end %>
-      <%# </div> %>
 
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
     <% if current_user.status === "owner" %>
       <% @users.each do |user| %>
-      <div class = "">
-
-        <%=user.email.capitalize.split("@")[0] %>
-        <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes traitées
-        <div>
-          <% accepted_orders = @restaurant.orders.where(status: "accepter" , employee: user.id) %>
-          <% accepted_orders.each do |order| %>
-            Commande accepted : <%= order.quantity %>
-          <% end %>
-        </div>
-        <div>
-          <% refused_orders = @restaurant.orders.where(status: "refuser", employee: user.id) %>
-          <% refused_orders.each do |order| %>
-            Commande refusée: <%= order.quantity %>
-          <% end %>
-        </div>
-
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          V
-        </button>
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-            <% @orders.where(employee: user.id).each do |order| %>
-            <p><%= order.item.name %>, </p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <hr>
+      <%= render "shared/orders_detail", user: user %>
+      <% end %>
+    <% else %>
+      <%= render "shared/orders_detail", user: current_user %>
     <% end %>
-  <% else %>
-    eqfsfd
-  <% end %>
+  </div>
+
 </div>
+
+
