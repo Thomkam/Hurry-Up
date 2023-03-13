@@ -66,35 +66,27 @@
       </div>
   </div>
 
-
-   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+   <%# <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
       <% @users.each do |user| %>
-
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-    <% if current_user.status = "owner" %>
-      <% @users.each do |user| %>
-      <div class = "d-flex justify-content-between">
-
-        <div>
-          <div>
-            <%=user.email.capitalize.split("@")[0] %>
-            <p>NUMBER commandes accepter</p>
-          </div>
+        <%# <div> %>
+          <%# <div> %>
+            <%# <%=user.email.capitalize.split("@")[0] %>
+            <%# <p>NUMBER commandes accepter</p> %>
+          <%# </div>
         </div>
-
       <% end %>
 
-      <div>
+      <div class="container center-text">
         <% accepted_orders = @restaurant.orders.where(status: "accepter") %>
         <% accepted_orders.each do |order| %>
-        Commande accepted par <%= User.find(order.employee).first_name %>, quantity: <%= order.quantity %>
+          <p> </span>Il y a <%= order.quantity %> commandes acceptées par <span class="name"><%= User.find(order.employee).first_name %></p>
         <% end %>
       </div>
 
-      <div>
+      <div class="container center-text">
         <% refused_orders = @restaurant.orders.where(status: "refuser") %>
         <% refused_orders.each do |order| %>
-        Commande refusé par <%= User.find(order.employee).first_name %>, quantity: <%= order.quantity %>
+          <p> </span>Il y a <%= order.quantity %> commandes refusées par <span class="name"><%= User.find(order.employee).first_name %></p>
         <% end %>
       </div>
 
@@ -105,22 +97,6 @@
         <%# , quantity: <%= order.quantity %>
         <%# <% end %>
       <%# </div> %>
-
-              <div class="nav-item dropdown">
-              <%= image_tag "https://img1.freepng.fr/20180701/btv/kisspng-computer-icons-avatar-user-profile-man-avatars-5b38adb9f113b0.3674732815304411459875.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Rent", "#", class: "dropdown-item" %>
-                <%= link_to "Booking", "#", class: "dropdown-item" %>
-                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-              </div>
-            </div>
-      </div>
-
-      <% end %>
-    <% else %>
-    eqfsfd
-    <% end %>
-
    </div>
 
 </div>
