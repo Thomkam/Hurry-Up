@@ -3,6 +3,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @sitting_areas = @restaurant.sitting_areas
     @users = User.all
+    @orders = Order.all
   end
 
   def new
