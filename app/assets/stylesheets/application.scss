@@ -14,7 +14,13 @@
 
 
 body {
-  background: linear-gradient(to right,
-  #fddccc71,
-  #fcc1784e);
+  background-color: white;
+}
+
+.elapsed-time-orange {
+  background-color: orange;
+}
+
+.elapsed-time-red {
+  background-color: red;
 }

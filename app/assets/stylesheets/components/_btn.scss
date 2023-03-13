@@ -1,0 +1,44 @@
+.btn-dash {
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  text-decoration: none;
+}
+
+.couverts-background{
+  background: linear-gradient(to right,
+  #f8ddbe,
+  #f7f2ec);
+}
+
+.sauce-background{
+  background: linear-gradient(to right,
+  #f8dddd,
+  #f6f4e0);
+}
+
+.condiments-background{
+  background: linear-gradient(to right,
+  #f8e8ab,
+  #faf6eb);
+}
+
+.serviettes-background{
+  background: linear-gradient(to right,
+  #c7cef4,
+  #ebecf6);
+}
+
+.verres-background{
+  background: linear-gradient(to right,
+  #b8d7f7,
+  #eef4fa);
+
+}
+
+.autre{
+  background: linear-gradient(to right,
+  #e0cafb,
+  #f4f0f9
+  );
+  border: none;
+}
