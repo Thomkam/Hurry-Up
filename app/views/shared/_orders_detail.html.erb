@@ -20,11 +20,11 @@
           <div class = "d-flex justify-content-between">
           <% time = distance_of_time_in_words(order.updated_at, order.created_at)  %>
            <% if (order.updated_at - order.created_at) >= 5.minutes %>
-            <small>temp d'attente : </small><p class ="elapsed-time-red"><%= time %></p>
+            <small>temps d'attente : </small><p class ="elapsed-time-red"><%= time %></p>
           <% elsif (order.updated_at - order.created_at) >= 3.minutes %>
-            <small>temp d'attente :</small><p class ="elapsed-time-orange"><%= time %></p> >
+            <small>temps d'attente :</small><p class ="elapsed-time-orange"><%= time %></p> >
           <% else %>
-            <small>temp d'attente :</small><p class ="elapsed-time-green"><%= time %></p>
+            <small>temps d'attente :</small><p class ="elapsed-time-green"><%= time %></p>
           <% end %>
 
           </div>

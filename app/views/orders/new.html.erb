@@ -1,11 +1,7 @@
 <%= render "shared/banner_client", restaurant: @restaurant, sitting_area: @sitting_area %>
+<%= link_to "Retour", sitting_area_path(@sitting_area), class: "btn btn-primary back-btn",  style: "text-decoration: none; color: inherit; z-index: 1000" %>
 
 <div class="container-fluid">
-  <div class="btn btn-primary px-4 mt-3" style="border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); text-decoration: none; ">
-    <%= link_to "Retour", sitting_area_path(@sitting_area), style: "text-decoration: none; color: inherit; z-index: 1000" %>
-  </div>
-
-
   <%# <%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
   <div class="icone-item">
     <%= image_tag "#{@category.name}.png"%>
