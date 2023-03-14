@@ -1,5 +1,5 @@
 <%= render "shared/banner_client", restaurant: @restaurant, sitting_area: @sitting_area %>
-<%= link_to "Retour", sitting_area_path(@sitting_area), class: "btn btn-primary back-btn",  style: "text-decoration: none; color: inherit; z-index: 1000" %>
+<%= link_to "<", sitting_area_path(@sitting_area), class: "btn btn-primary back-btn",  style: "text-decoration: none; color: inherit; z-index: 1000" %>
 
 <div class="container-fluid">
   <%# <%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
