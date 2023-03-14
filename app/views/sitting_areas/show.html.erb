@@ -66,11 +66,10 @@
       <div class="py-1">
         <div class="d-flex justify-content-between">
           <%= order.quantity %> <%= order.item.name %>
-        <div class="badge bg-secondary"><%= format_status(order.status) %></div>
+          <div class="badge bg-secondary"><%= format_status(order.status) %></div>
         </div>
         <div class="d-flex justify-content-between">
           <small>(Il y a <%= order.find_time %>)</small>
-          </div>
         </div>
       </div>
       <hr>

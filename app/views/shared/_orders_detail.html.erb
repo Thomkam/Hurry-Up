@@ -7,10 +7,10 @@
   <div>
     Commandes refusées : <%= @restaurant.orders.where(status: "refuser", employee: user.id).count %>
   </div>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= user.id %>" aria-expanded="false" aria-controls="collapseExample">
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= sitting_area.id %>" aria-expanded="false" aria-controls="collapseExample">
     V
   </button>
-  <div class="collapse" id="collapseExample-<%= user.id %>">
+  <div class="collapse" id="collapseExample-<%= sitting_area.id %>">
     <div class=" card-body mt-2 ">
       <% @orders.where(employee: user.id).select { |order| order.restaurant == @restaurant }.each do |order| %>
       <div class="d-flex justify-content-between mt-2">
