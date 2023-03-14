@@ -1,4 +1,4 @@
-<div>
+<div class="ordered_card">
   <p><%= user.email.capitalize.split("@")[0] %>
   a traitées <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes </p>
   <div>
@@ -11,9 +11,17 @@
     V
   </button>
   <div class="collapse" id="collapseExample-<%= user.id %>">
-    <div class="card card-body">
+    <div class=" card-body mt-2 ">
       <% @orders.where(employee: user.id).select { |order| order.restaurant == @restaurant }.each do |order| %>
-      <p><%= order.item.name %>, </p>
+      <div class="d-flex justify-content-between mt-2">
+        <div>
+          <%= order.item.name %>
+          <div>
+            <small>temp d'attente </small><%= distance_of_time_in_words(order.updated_at, order.created_at) %>
+          </div>
+        </div>
+        <%= order.status %>
+        </div>
       <% end %>
     </div>
   </div>
