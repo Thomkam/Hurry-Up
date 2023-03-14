@@ -1,6 +1,6 @@
 <div class="ordered_card">
   <p><%= user.email.capitalize.split("@")[0] %>
-  a traitées <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes </p>
+  a traité <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes </p>
   <div>
       Commandes acceptées : <%= @restaurant.orders.where(status: "accepter" , employee: user.id).count %>
   </div>
@@ -16,6 +16,7 @@
       <div class="d-flex justify-content-between mt-2">
         <div>
           <%= order.item.name %>
+
           <div class = "d-flex justify-content-between">
           <% time = distance_of_time_in_words(order.updated_at, order.created_at)  %>
            <% if (order.updated_at - order.created_at) >= 5.minutes %>
@@ -25,6 +26,7 @@
           <% else %>
             <small>temp d'attente :</small><p class ="elapsed-time-green"><%= time %></p>
           <% end %>
+
           </div>
         </div>
         <%= order.status %>

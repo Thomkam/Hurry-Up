@@ -1,13 +1,11 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon ">
   <div class="container">
     <% if current_user %>
-      <p class= "mb-0">bienvenu(e) <%= current_user.email.capitalize.split("@")[0] %></p>
+      <p class="mb-0">bienvenu(e) <%= current_user.email.capitalize.split("@")[0] %></p>
       <%else%>
       <p> connectez vous</p>
     <%end %>
-    <div class=" ">
-
-
+    <div class="">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
