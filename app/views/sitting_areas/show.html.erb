@@ -37,6 +37,7 @@
           <%= simple_form_for :item, url: sitting_area_items_path(@sitting_area), method: :post do |f| %>
             <%= f.input :name, label: "Votre demande"%>
             <%= f.input :quantity, label: "En quel quantité ?" , as: :integer %>
+            <%= f.input :category_id, label: "Le type de votre demande ?", as: :select, collection: Category.all, label_method: :name, label_value: :id %>
             <%= f.submit 'envoyer', class: 'btn btn-primary' %>
           <% end %>
         </div>
