@@ -1,6 +1,6 @@
 <div class="ordered_card">
   <p><%= user.email.capitalize.split("@")[0] %>
-  a traitées <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes </p>
+  a traité <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes </p>
   <div>
       Commandes acceptées : <%= @restaurant.orders.where(status: "accepter" , employee: user.id).count %>
   </div>
@@ -17,7 +17,7 @@
         <div>
           <%= order.item.name %>
           <div>
-            <small>temp d'attente </small><%= distance_of_time_in_words(order.updated_at, order.created_at) %>
+            <small>temps d'attente </small><%= distance_of_time_in_words(order.updated_at, order.created_at) %>
           </div>
         </div>
         <%= order.status %>

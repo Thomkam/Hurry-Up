@@ -10,3 +10,20 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+@include media-breakpoint-down(sm) {
+  .navbar-lewagon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    background: transparent;
+  }
+  .navbar-lewagon p {
+    display: none;
+  }
+  .navbar-lewagon .container {
+    justify-content: flex-end;
+  }
+}
