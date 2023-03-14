@@ -17,7 +17,12 @@
         <div>
           <%= order.item.name %>
           <div>
-            <small>temp d'attente </small><%= distance_of_time_in_words(order.updated_at, order.created_at) %>
+          <% time = distance_of_time_in_words(order.updated_at, order.created_at)  %>
+           <% if time >= 300 %>
+            <small>temp d'attente </small><p class ="elapsed-time-red"><%= time%></p>
+            <% else %>
+            <small>temp d'attente </small><p><%= time%></p>
+            <% end %>
           </div>
         </div>
         <%= order.status %>
