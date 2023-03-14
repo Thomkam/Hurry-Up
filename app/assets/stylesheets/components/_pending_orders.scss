@@ -1,0 +1,19 @@
+.pending-orders {
+  box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
+  padding-top: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  span.collapsed {
+    transform: scale(-1);
+  }
+  .pending-order {
+    margin: 1rem 0;
+  }
+  .pending-order:not(:last-child) {
+    border-bottom: 1px solid $hurry-grey;
+    padding-bottom: 1rem;
+  }
+}
