@@ -70,7 +70,6 @@
       <% end %>
     <% end %>
   </div>
-
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
     <% if current_user.status === "owner" %>
       <% @users.each do |user| %>
@@ -80,7 +79,6 @@
       <%= render "shared/orders_detail", user: current_user %>
     <% end %>
   </div>
-
 </div>
 
 

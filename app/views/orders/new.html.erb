@@ -4,8 +4,6 @@
   <%= link_to "Retour", sitting_area_path(@sitting_area), style: "text-decoration: none; color: inherit;" %>
 </div>
 
-<%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
-
 <hr>
 <h5 class="mb-0 py-1">Passer commande</h5>
 <% @category.items.each do |item| %>
@@ -21,3 +19,5 @@
     </div>
   </div>
 <% end %>
+
+<%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
