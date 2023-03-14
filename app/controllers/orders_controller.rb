@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
   def remove_order
     @order = Order.find_by(item_id: params[:item_id].to_i, sitting_area_id: params[:sitting_area_id].to_i, status: "en attente") # Find order
-    if @order.quantity > 1
+    if @order.quantity >= 1
       @order.quantity -= 1 # decrement quantity
       @order.save # save
       redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id), notice: 'order was successfully updated.' # redirect av le submit
