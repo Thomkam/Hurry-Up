@@ -2,18 +2,23 @@
 
 <div class="container-fluid">
   <div class="btn btn-primary px-4 mt-3" style="border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); text-decoration: none; ">
-    <%= link_to "Retour", sitting_area_path(@sitting_area), style: "text-decoration: none; color: inherit;" %>
+    <%= link_to "Retour", sitting_area_path(@sitting_area), style: "text-decoration: none; color: inherit; z-index: 1000" %>
   </div>
 
+
   <%# <%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
+  <div class="icone-item">
+    <%= image_tag "#{@category.name}.png"%>
+  </div>
 
   <hr>
   <h5 class="mb-0 py-1">Passer commande</h5>
+  <hr>
   <% @category.items.each do |item| %>
     <%# <span><%= item.name %></span>
           <%# <%= image_tag "#{item.name}.png", style: 'height:40px;width:40px;' %>
     <div class="d-flex w-100 justify-content-between py-2">
-      <%= item.name %>
+        <%= item.name %>
       <div class="d-flex align-items-center" >
         <%= link_to '-', remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id),
         class: "btn btn-primary #{ 'disabled' if Order.find_by(item_id: item.id, sitting_area_id: params[:sitting_area_id]).nil? }" %>
@@ -22,4 +27,5 @@
       </div>
     </div>
   <% end %>
+  <hr>
 </div>

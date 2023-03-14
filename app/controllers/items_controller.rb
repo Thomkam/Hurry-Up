@@ -4,8 +4,8 @@ class ItemsController < ApplicationController
     @sitting_area = SittingArea.find(params[:sitting_area_id])
     @item.restaurant = @sitting_area.restaurant
     @item.custom = "true"
-    @item.category = Category.find(params[:item][:category].to_i)
-    if @item.save
+
+    if @item.save!
       @order = Order.new(quantity: params[:item][:quantity], item: @item, sitting_area: @sitting_area)
       @order.status = "en attente"
       @order.save
@@ -18,6 +18,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name)
+    params.require(:item).permit(:name, :category_id)
   end
 end
