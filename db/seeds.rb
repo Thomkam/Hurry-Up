@@ -157,12 +157,7 @@ order2.item = itemsauce1
 order2.sitting_area = sitting_area1
 order2.save!
 
-riwan.restaurant = restaurant1
-riwan.save!
-thomas.restaurant = restaurant2
-thomas.save!
-benoit.restaurant = restaurant3
-benoit.save!
+
 
 order3 = Order.new(quantity: 2 ,status: "en attente")
 order3.item = itemsauce2

@@ -11,7 +11,7 @@
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
     <% @sitting_areas.each do |sitting_area| %>
       <% unless sitting_area.orders.where(status: "en attente").empty? %>
-        <div class="rounded-4 bg-light px-2 py-3 my-2">
+        <div class="ordered_card">
           <h3>Table <%= sitting_area.sitting_area_number %> :</h3>
           <% sitting_area.orders.each do |order|%>
             <% if order.status == "en attente" %>
@@ -25,7 +25,7 @@
                     <div class="badge bg-secondary"><%= order.status %></div>
                     <% elapsed_time = Time.current - order.created_at %>
                     <%# HERE TO CHANGE THE TIME TO TURN IT RED %>
-                    <% if elapsed_time >= 2.minutes %>
+                    <% if elapsed_time >= 3.minutes %>
                       <small class="elapsed-time-red">(il y a <%= order.find_time %>)</small>
                     <%# HERE TO CHANGE THE TIME TO TURN IT ORANGE %>
                     <% elsif elapsed_time >= 1.minute %>
@@ -68,9 +68,9 @@
       <% end %>
     <% end %>
   </div>
-
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-    <% if current_user.status === "owner" %>
+    <% if current_user.status == "owner" %>
+
       <% @users.each do |user| %>
       <%= render "shared/orders_detail", user: user %>
       <% end %>
@@ -78,5 +78,4 @@
       <%= render "shared/orders_detail", user: current_user %>
     <% end %>
   </div>
-
 </div>
