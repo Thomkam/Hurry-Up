@@ -141,9 +141,9 @@ sitting_area6.save!
 
 # CREATE USER
 
-riwan = User.create!(email: "riwan@example.com", password: "password", restaurant: restaurant1, status: "owner", first_name: "Riwan" )
-thomas = User.create!(email: "thomas@example.com", password: "password", restaurant: restaurant2, status: "owner", first_name: "Thomas" )
-benoit = User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant2, status: "employee", first_name: "Benoît" )
+User.create!(email: "riwan@example.com", password: "password", restaurant: restaurant1, status: "owner", first_name: "Riwan" )
+User.create!(email: "thomas@example.com", password: "password", restaurant: restaurant2, status: "owner", first_name: "Thomas" )
+User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant2, status: "employee", first_name: "Benoît" )
 
 # CREATE ORDERS
 
