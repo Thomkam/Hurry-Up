@@ -45,8 +45,28 @@
     </div>
   </div>
 
-  <% if @sitting_area.orders.any? %>
-    <%= render 'shared/recap_orders', pending_orders: @pending_orders, passed_orders: @passed_orders %>
 
-  <% end %>
+
+<%# DROP DOWN PENDING ORDERS  %>
+<div>
+  <h5 class="mb-0 py-1"  >
+    <% if (@pending_orders.count) == 0 %>
+      <%= "0 Commandes en attente" %>
+    <% else  %>
+      <%= @pending_orders.count %> Commandes en attente</h5>
+    <% end %>
+<hr>
+<% @pending_orders.each do |order| %>
+  <div class="py-1">
+    <div class="d-flex justify-content-between">
+      <%= order.quantity %> <%= order.item.name %>
+     <div class="badge bg-secondary"><%= format_status(order.status) %></div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <small>(Il y a <%= order.find_time %>)</small>
+      </div>
+    </div>
+  </div>
+  <hr>
+<% end %>
 </div>

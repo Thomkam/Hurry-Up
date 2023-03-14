@@ -1,6 +1,4 @@
-<div class="py-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @restaurant.image.key, height: 300, crop: :fill %>'); background size: cover; background-position: center;">
-  <h1 class="text-white ps-3 text-center">  <%= link_to "#{ @restaurant.name}", sitting_area_path(@sitting_areas.first), class: "text-decoration-none text-white" %></h1>
-</div>
+<%= render "shared/banner_owner", restaurant: @restaurant, sitting_area: @sitting_area %>
 
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -82,5 +80,3 @@
   </div>
 
 </div>
-
-
