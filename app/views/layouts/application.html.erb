@@ -46,6 +46,17 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <%# PWA Mise en place  %>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <%# PWA Mise en place  %>
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+
+    <%# PWA Mise en place  %>
+    <%= render 'shared/ios_pwa_links' %>
+
   </head>
 
   <body>
