@@ -12,17 +12,15 @@
     <% @sitting_areas.each do |sitting_area| %>
       <% unless sitting_area.orders.where(status: "en attente").empty? %>
         <div class="ordered_card">
-          <h3>Table <%= sitting_area.sitting_area_number %> :</h3>
+          <h3>Table <%= sitting_area.sitting_area_number %></h3>
           <% sitting_area.orders.each do |order|%>
             <% if order.status == "en attente" %>
               <div class="d-flex justify-content-between">
-
                 <div class="d-flex flex-column align-items-start">
                   <div>
                     <%= order.quantity %> <%= order.item.name %>
                   </div>
                   <div class="d-flex gap-2 justify-content-between">
-                    <div class="badge bg-secondary"><%= order.status %></div>
                     <% elapsed_time = Time.current - order.created_at %>
                     <%# HERE TO CHANGE THE TIME TO TURN IT RED %>
                     <% if elapsed_time >= 5.minutes %>
@@ -46,7 +44,7 @@
                   <% end %>
                 </div>
               </div>
-              <hr class = "my-hr">
+              <hr class="my-hr">
             <% end %>
           <% end %>
           <div class="d-flex justify-content-end">
@@ -70,9 +68,8 @@
   </div>
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
     <% if current_user.status == "owner" %>
-
       <% @users.each do |user| %>
-      <%= render "shared/orders_detail", user: user %>
+        <%= render "shared/orders_detail", user: user %>
       <% end %>
     <% else %>
       <%= render "shared/orders_detail", user: current_user %>

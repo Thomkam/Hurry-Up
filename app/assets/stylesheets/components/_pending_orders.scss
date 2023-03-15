@@ -1,11 +1,12 @@
 .pending-orders {
   box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: white;
+  background-color: rgb(232, 229, 229);
+  border-top: 1px solid $hurry-grey ;
   span.collapsed {
     transform: scale(-1);
   }

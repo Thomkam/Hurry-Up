@@ -6,7 +6,7 @@
   <div class="row mx-0" style="text-decoration: none;">
     <% Category.all.each do |category| %>
       <div class="col-6">
-        <%= link_to new_sitting_area_order_path(@sitting_area, category_id: category.id), class: "d-block btn #{category.name}-background mb-5 py-3", style: "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" do %>
+        <%= link_to new_sitting_area_order_path(@sitting_area, category_id: category.id), class: "d-block btn #{category.name}-background mb-4 py-3", style: "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" do %>
           <span>
             <%= image_tag "#{category.name}.png", style: 'height:70px;width:70px;'%>
             <br>
@@ -17,7 +17,7 @@
     <% end %>
     <div class="col-6 text-center">
       <!-- Button trigger modal -->
-      <div type="button" class= "autre d-block btn btn-primary mb-5 py-3", style= "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <div type="button" class= "autre d-block btn btn-primary mb-4 py-3", style= "border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <%= image_tag "custom.png", alt:"Custom Icon", style:"height:70px;width:70px;position:relative;left:6px"%>
         <br>
         Autres
@@ -49,30 +49,31 @@
 
 <%# DROP DOWN PENDING ORDERS  %>
 
-<hr>
-
-<h5 class="mb-0 py-1 text-center"  >
-  <% if (@pending_orders.count) == 0 %>
-    0 Commandes en attente
-  <% else  %>
-    <%= @pending_orders.count %> Commandes en attente
-  <% end %>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= @sitting_area.id %>" aria-expanded="false" aria-controls="collapseExample">
-    V
-  </button>
-</h5>
-<div class="collapse" id="collapseExample-<%= @sitting_area.id %>">
-  <div class=" card-body mt-2 ">
-    <% @pending_orders.each do |order| %>
-
-      <div class="py-1">
-        <div class="d-flex justify-content-between">
-          <%= order.quantity %> <%= order.item.name %>
-          <div class="badge bg-secondary"><%= format_status(order.status) %></div>
-        </div>
-        <div class="d-flex justify-content-between">
-          <small>(Il y a <%= order.find_time %>)</small>
-        </div>
+<div class="pending-orders">
+  <h5 class="py-1 text-center"  >
+    <% if (@pending_orders.count) == 0 %>
+      0 Commandes en attente
+    <% else  %>
+      <%= @pending_orders.count %> Commandes en attente
+    <% end %>
+    <span class="btn btn-primary collapsed" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= @sitting_area.id %>">
+      <i class="fa-solid fa-angle-down"></i>
+    </span>
+  </h5>
+  <div class="container-fluid">
+    <div class="collapse" id="collapseExample-<%= @sitting_area.id %>">
+      <div class="card-body mt-2">
+        <% @pending_orders.each do |order| %>
+          <div class="pending-order">
+            <div class="d-flex justify-content-between">
+              <%= order.quantity %> <%= order.item.name %>
+              <div class="badge bg-secondary"><%= format_status(order.status) %></div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <small>(Il y a  <%= order.find_time %>)</small>
+            </div>
+          </div>
+        <% end %>
       </div>
       <hr>
 
