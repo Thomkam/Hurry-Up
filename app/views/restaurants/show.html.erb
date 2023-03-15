@@ -1,13 +1,12 @@
 <%= render "shared/banner_owner", restaurant: @restaurant, sitting_area: @sitting_area %>
 
-<div class="btn-owner">
+<div class="btn-owner py-3">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">en cours</button>
       <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">passées</button>
     </div>
   </nav>
-
 </div>
 
 <div class="tab-content" id="nav-tabContent">
@@ -55,20 +54,19 @@
             <% end %>
           <% end %>
           <div class="d-flex justify-content-end">
-            <p>ALL</p>
-            <div class="d-flex " style="  margin-left: 10px;">
+            <div class="d-flex " style="margin-left: 10px;">
               <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
                 <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
                 <%= f.hidden_field :status,  value: 'refuser' %>
                 <%= button_tag type: "submit", class: "x-btn" do %>
-                  <i class="fa fa-light fa-circle-xmark fa-3x"></i>
+                  tout refuser
                 <% end %>
               <% end %>
               <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
                 <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
                 <%= f.hidden_field :status,  value: 'accepter' %>
                 <%= button_tag type: "submit", class: "v-btn" do %>
-                  <i class="fa-solid fa-circle-check fa-3x"></i>
+                  tout accepter
                 <% end %>
               <% end %>
             </div>

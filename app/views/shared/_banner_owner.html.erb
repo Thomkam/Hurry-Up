@@ -1,5 +1,5 @@
-<div class="top-restaurant-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path restaurant.image.key, height: 300, crop: :fill %>');">
-  <%= link_to sitting_area_path(@sitting_areas.first), class: "text-decoration-none text-white restoname text-white ps-3" do %>
+<div class="top-restaurant-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path restaurant.image.key, height: 300, crop: :fill %>');">
+  <%= link_to sitting_area_path(@sitting_areas.first), class: "text-decoration-none text-white restoname text-white" do %>
     <%= restaurant.name %>
      <p class= "mb-0"><%= current_user.email.capitalize.split("@")[0] %></p>
   <% end %>
