@@ -7,6 +7,7 @@
       <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">passées</button>
     </div>
   </nav>
+
 </div>
 
 <div class="tab-content" id="nav-tabContent">
@@ -56,11 +57,13 @@
                 <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
                 <%= f.hidden_field :status,  value: 'refuser' %>
                 <%= f.submit 'X', class: 'btn btn-secondary rounded-circle me-2' %>
+                <%# <i class="fa-regular fa-circle-xmark"></i> %>
               <% end %>
               <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
                 <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
                 <%= f.hidden_field :status,  value: 'accepter' %>
                 <%= f.submit 'V', class: 'btn btn-primary rounded-circle'%>
+                <%# <i class="fa-solid fa-circle-check"></i> %>
               <% end %>
             </div>
           </div>
