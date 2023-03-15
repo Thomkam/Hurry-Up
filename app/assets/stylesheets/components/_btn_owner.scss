@@ -1,0 +1,26 @@
+// en cours
+.btn-owner {
+  .nav-link {
+    font-size: 18px;
+    text-transform: uppercase;
+    border: none;
+    color: black;
+    &.active {
+      border-bottom: 1px solid black;
+      font-weight: 600;
+      background-color: white;
+    }
+  }
+  .nav-tabs {
+    border: none;
+    justify-content: space-around;
+    // color: black;
+  }
+}
+
+
+// passée
+#nav-profile-tab{
+  font-size: 18px;
+  text-transform: uppercase;
+}
