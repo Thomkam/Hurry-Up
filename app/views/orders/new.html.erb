@@ -16,9 +16,9 @@
     <div class="d-flex w-100 justify-content-between py-2">
         <%= item.name %>
       <div class="d-flex align-items-center" >
-        <% order = Order.find_by(item_id: item.id, sitting_area_id: params[:sitting_area_id]) %>
+        <% order = Order.where(item_id: item.id, sitting_area_id: params[:sitting_area_id]).last %>
         <%= link_to '-', remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id),
-        class: "btn btn-primary #{ 'disabled' if order.nil? || order.quantity == 0 }" %>
+        class: "btn btn-primary #{ 'disabled' if order.nil? || order.status != "en attente" }" %> <%#%>
         <div class="px-2"><%= @sitting_area.orders.find_by(item: item, status: "en attente").nil? ? '0' : @sitting_area.orders.find_by(item: item, status: "en attente").quantity %></div>
         <%= link_to '+', add_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "btn btn-primary" %>
       </div>
