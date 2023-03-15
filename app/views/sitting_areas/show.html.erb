@@ -55,7 +55,7 @@
   <% if (@pending_orders.count) == 0 %>
     0 Commandes en attente
   <% else  %>
-    <%= @pending_orders.count %> Commandes en attente
+    <%= @pending_orders.where(@pending_orders.quantity >= 1).count %> Commandes en attente
   <% end %>
   <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= @sitting_area.id %>" aria-expanded="false" aria-controls="collapseExample">
     V
@@ -64,6 +64,7 @@
 <div class="collapse" id="collapseExample-<%= @sitting_area.id %>">
   <div class=" card-body mt-2 ">
     <% @pending_orders.each do |order| %>
+    <% if order.quantity >= 1 %>
       <div class="py-1">
         <div class="d-flex justify-content-between">
           <%= order.quantity %> <%= order.item.name %>
@@ -74,6 +75,8 @@
         </div>
       </div>
       <hr>
+      <% else %>
+      <% end %>
     <% end %>
   </div>
 </div>
