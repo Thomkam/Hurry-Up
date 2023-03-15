@@ -112,84 +112,49 @@ sitting_area2 = SittingArea.new(sitting_area_number: 2)
 sitting_area2.restaurant = restaurant1
 sitting_area2.save!
 
-restaurant2 = Restaurant.new(name: "Ben's delicacies",address: "the basement",number_of_sitting_areas: 2)
-
-file = URI.open("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=781&q=80")
-restaurant2.image.attach(io: file, filename: "nes.png", content_type: "image/png")
-restaurant2.save!
-
-sitting_area3 = SittingArea.new(sitting_area_number: 1)
-sitting_area3.restaurant = restaurant2
+sitting_area3 = SittingArea.new(sitting_area_number: 3)
+sitting_area3.restaurant = restaurant1
 sitting_area3.save!
 
-sitting_area4 = SittingArea.new(sitting_area_number: 2)
-sitting_area4.restaurant = restaurant2
+sitting_area4 = SittingArea.new(sitting_area_number: 4)
+sitting_area4.restaurant = restaurant1
 sitting_area4.save!
 
-restaurant3 = Restaurant.new(name: "Thomas's nugs",address: "the far est", number_of_sitting_areas: 2)
-file = URI.open("https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=780&q=80")
-restaurant3.image.attach(io: file, filename: "nes.png", content_type: "image/png")
-restaurant3.save!
 
-sitting_area5 = SittingArea.new(sitting_area_number: 1)
-sitting_area5.restaurant = restaurant3
+
+sitting_area5 = SittingArea.new(sitting_area_number: 5)
+sitting_area5.restaurant = restaurant1
 sitting_area5.save!
 
-sitting_area6 = SittingArea.new(sitting_area_number: 2)
-sitting_area6.restaurant = restaurant3
+sitting_area6 = SittingArea.new(sitting_area_number: 6)
+sitting_area6.restaurant = restaurant1
 sitting_area6.save!
 
 # CREATE USER
 
 User.create!(email: "riwan@example.com", password: "password", restaurant: restaurant1, status: "owner", first_name: "Riwan" )
-User.create!(email: "thomas@example.com", password: "password", restaurant: restaurant2, status: "owner", first_name: "Thomas" )
-User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant2, status: "employee", first_name: "Benoît" )
+User.create!(email: "thomas@example.com", password: "password", restaurant: restaurant1, status: "employee", first_name: "Thomas" )
+User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant1, status: "employee", first_name: "Benoît" )
 
 # CREATE ORDERS
 
-order1 = Order.new(quantity: 2 ,status: "accepter", employee: User.first.id)
-order1.item = itemcouverts1
+
+
+
+order1 = Order.new(quantity: 1 ,status: "en attente")
+order1.item = itemcouverts3
 order1.sitting_area = sitting_area1
 order1.save!
 
-order2 = Order.new(quantity: 1 ,status: "refuser", employee: User.first.id)
-order2.item = itemsauce1
-order2.sitting_area = sitting_area1
+
+
+
+order2 = Order.new(quantity: 3 ,status: "en attente")
+order2.item = itemcondiments2
+order2.sitting_area = sitting_area4
 order2.save!
-
-
 
 order3 = Order.new(quantity: 2 ,status: "en attente")
 order3.item = itemsauce2
-order3.sitting_area = sitting_area1
+order3.sitting_area = sitting_area6
 order3.save!
-
-order4 = Order.new(quantity: 2 ,status: "accepter", employee: User.first.id)
-order4.item = itemcouverts1
-order4.sitting_area = sitting_area4
-order4.save!
-
-order5 = Order.new(quantity: 1 ,status: "refuser", employee: User.first.id)
-order5.item = itemsauce1
-order5.sitting_area = sitting_area4
-order5.save!
-
-order6 = Order.new(quantity: 2 ,status: "en attente")
-order6.item = itemsauce2
-order6.sitting_area = sitting_area4
-order6.save!
-
-order7 = Order.new(quantity: 2 ,status: "accepter", employee: User.first.id)
-order7.item = itemcouverts1
-order7.sitting_area = sitting_area6
-order7.save!
-
-order8 = Order.new(quantity: 1 ,status: "refuser", employee: User.first.id)
-order8.item = itemsauce1
-order8.sitting_area = sitting_area6
-order8.save!
-
-order9 = Order.new(quantity: 2 ,status: "en attente")
-order9.item = itemsauce2
-order9.sitting_area = sitting_area6
-order9.save!
