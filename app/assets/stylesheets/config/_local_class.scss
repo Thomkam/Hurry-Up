@@ -12,7 +12,21 @@
   color: rgb(0, 0, 0);
 
 }
-
+.navbar-toggler-icon{
+  background-color: $purple;
+  color: $purple;
+}
+.custom-toggler{
+  color: $purple;
+  background-color: $purple;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.navbar-toggler{
+  color: black;
+}
 .ordered_card{
   background-color: #EDF8FA;
   border-radius: 10px;
