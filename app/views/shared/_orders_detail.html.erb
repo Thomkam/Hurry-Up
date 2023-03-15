@@ -1,38 +1,30 @@
-<div class="ordered_card">
-  <p><%= user.email.capitalize.split("@")[0] %>
-  a traité <%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %> commandes </p>
-  <div>
-      Commandes acceptées : <%= @restaurant.orders.where(status: "accepter" , employee: user.id).count %>
+<div class="ordered_card" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= user.id %>" aria-expanded="false" aria-controls="collapseExample">
+  <div class="d-flex justify-content-between">
+    <h3><%= user.email.capitalize.split("@")[0] %></h3>
+    <i class="fa-solid fa-angle-down" style="font-size: 20px;"></i>
   </div>
-  <div>
-    Commandes refusées : <%= @restaurant.orders.where(status: "refuser", employee: user.id).count %>
-  </div>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= user.id %>" aria-expanded="false" aria-controls="collapseExample">
-    V
-  </button>
+  <strong><%= @restaurant.orders.where(status: "accepter", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %></strong> commandes executées
   <div class="collapse" id="collapseExample-<%= user.id %>">
     <div class=" card-body mt-2 ">
       <% @orders.where(employee: user.id).select { |order| order.restaurant == @restaurant }.each do |order| %>
-      <div class="d-flex justify-content-between mt-2">
-        <div>
-          <%= order.item.name %>
-
+        <div class="d-flex justify-content-between mt-2 flex-column justify-content-start">
+          <div class="d-flex justify-content-between">
+            <div><%= order.quantity %> <%= order.item.name %></div>
+            <span class="badge bg-secondary" style="font-size: 14px;"><%= order.status %></span>
+          </div>
           <div class = "d-flex justify-content-between">
-          <% time = distance_of_time_in_words(order.updated_at, order.created_at)  %>
-           <% if (order.updated_at - order.created_at) >= 5.minutes %>
-            <small>temps d'attente : </small><p class ="elapsed-time-red"><%= time %></p>
-          <% elsif (order.updated_at - order.created_at) >= 3.minutes %>
-            <small>temps d'attente :</small><p class ="elapsed-time-orange"><%= time %></p> >
-          <% else %>
-            <small>temps d'attente :</small><p class ="elapsed-time-green"><%= time %></p>
-          <% end %>
-
+            <% time = distance_of_time_in_words(order.updated_at, order.created_at)  %>
+            <% if (order.updated_at - order.created_at) >= 5.minutes %>
+              <small class="elapsed-time-red">(temps d'attente de <%= time %>)</small>
+            <% elsif (order.updated_at - order.created_at) >= 3.minutes %>
+              <small class="elapsed-time-orange">(temps d'attente de <%= time %>)</small>
+            <% else %>
+              <small class="elapsed-time-green">(temps d'attente de <%= time %>)</small>
+            <% end %>
           </div>
         </div>
-        <%= order.status %>
-      </div>
+        <hr class="my-hr">
       <% end %>
     </div>
   </div>
 </div>
-<hr>
