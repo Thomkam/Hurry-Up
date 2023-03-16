@@ -12,3 +12,11 @@
     align-items: center;
     text-decoration: none;
 }
+
+fieldset:disabled .btn {
+  color: white;
+}
+
+.btn.disabled {
+  color: white;
+}
