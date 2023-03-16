@@ -3,7 +3,7 @@
     <h3><%= user.email.capitalize.split("@")[0] %></h3>
     <i class="fa-solid fa-angle-down" style="font-size: 20px;"></i>
   </div>
-  <strong><%= @restaurant.orders.where(status: "acceptée", employee: user.id).count + @restaurant.orders.where(status: "refuser", employee: user.id).count %></strong> commandes executées
+  <strong><%= @restaurant.orders.where(status: "acceptée", employee: user.id).count + @restaurant.orders.where(status: "refusée", employee: user.id).count %></strong> commandes executées
   <div class="collapse" id="collapseExample-<%= user.id %>">
     <div class=" card-body mt-2 ">
       <% @orders.where(employee: user.id).select { |order| order.restaurant == @restaurant }.each do |order| %>
