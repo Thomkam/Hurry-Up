@@ -23,9 +23,11 @@
 
 
         <%# font awsome btn - %>
-        <%= link_to remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "minus" do %>
-          <i class="fa-solid fa-minus <%= 'disabled' if order.nil? || order.status != 'en attente' %>"></i>
+        <%= link_to remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "btn btn-primary minus #{ 'disabled' if Order.find_by(item_id: item.id, sitting_area_id: params[:sitting_area_id]).nil? }" do %>
+          <i class="fa-solid fa-minus"></i>
         <% end %>
+
+
 
         <div class="number px-2"><%= @sitting_area.orders.find_by(item: item, status: "en attente").nil? ? '0' : @sitting_area.orders.find_by(item: item, status: "en attente").quantity %></div>
 
