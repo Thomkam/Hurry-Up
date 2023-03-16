@@ -58,14 +58,14 @@
               <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
                 <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
                 <%= f.hidden_field :status,  value: 'refusée' %>
-                <%= button_tag type: "submit", class: "x-btn" do %>
+                <%= button_tag type: "submit", class: "btn r-btn" do %>
                   tout refuser
                 <% end %>
               <% end %>
               <%= simple_form_for :sitting_area, url: update_all_orders_path, method: :patch do |f| %>
                 <%= f.hidden_field :sitting_area,  value: sitting_area.id %>
                 <%= f.hidden_field :status,  value: 'acceptée' %>
-                <%= button_tag type: "submit", class: "v-btn" do %>
+                <%= button_tag type: "submit", class: "btn a-btn" do %>
                   tout accepter
                 <% end %>
               <% end %>
