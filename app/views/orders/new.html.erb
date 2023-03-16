@@ -14,15 +14,16 @@
     <%# <span><%= item.name %></span>
           <%# <%= image_tag "#{item.name}.png", style: 'height:40px;width:40px;' %>
     <div class="d-flex w-100 justify-content-between py-2">
-        <%= item.name %>
-      <div class="d-flex align-items-center" >
+      <%= item.name %>
+      <div class="d-flex align-items-center category-item-number" >
         <% order = Order.where(item_id: item.id, sitting_area_id: params[:sitting_area_id]).last %>
         <%= link_to '-', remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id),
         class: "btn btn-primary #{ 'disabled' if order.nil? || order.status != "en attente" }" %> <%#%>
-        <div class="px-2"><%= @sitting_area.orders.find_by(item: item, status: "en attente").nil? ? '0' : @sitting_area.orders.find_by(item: item, status: "en attente").quantity %></div>
+        <div class="number px-2"><%= @sitting_area.orders.find_by(item: item, status: "en attente").nil? ? '0' : @sitting_area.orders.find_by(item: item, status: "en attente").quantity %></div>
         <%= link_to '+', add_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
   <hr>
 </div>
+<%= render "shared/historique_client"%>

@@ -1,0 +1,37 @@
+
+<div class="pending-orders">
+  <h5 class="py-1 text-center"  >
+    <% if (@pending_orders.count) == 0 %>
+      0 Commandes en attente
+    <% else  %>
+      <%= @pending_orders.count %> Commandes en attente
+    <% end %>
+    <span class="btn btn-primary collapsed" data-bs-toggle="collapse" data-bs-target="#collapseExample-<%= @sitting_area.id %>">
+      <i class="fa-solid fa-angle-down"></i>
+    </span>
+  </h5>
+
+  <div class="collapse container-fluid" id="collapseExample-<%= @sitting_area.id %>">
+    <div class="card-body mt-2">
+      <% @pending_orders.each do |order| %>
+        <div class="d-flex justify-content-between">
+          <div>
+            <div>
+            <%= order.quantity %> <%= order.item.name %>
+            </div>
+            <small>Il y a  <%= order.find_time %> </small>
+          </div>
+          <div >
+              <div class="badge bg-secondary">
+                <%= format_status(order.status) %>
+              </div>
+              <div>
+              <%= link_to "supprimer", order_path(order), class: "sup_btn  ", data: {turbo_method: :delete, turbo_confirm: 'Are you sure'} %>
+              </div>
+          </div>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
