@@ -15,26 +15,26 @@ class OrdersController < ApplicationController
       @order.item = Item.find(params[:item_id])
       @order.sitting_area = SittingArea.find(params[:sitting_area_id])
       if @order.save
-        redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id), notice: 'order was successfully created.'
+        redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id)
       else
         render :new
       end
     else
       @order.quantity += 1
       @order.save
-      redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id), notice: 'order was successfully updated.'
+      redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id)
     end
   end
 
   def remove_order
     @order = Order.find_by(item_id: params[:item_id].to_i, sitting_area_id: params[:sitting_area_id].to_i, status: "en attente") # Find order
-    if @order.quantity >= 1
+    if @order.quantity > 1
       @order.quantity -= 1 # decrement quantity
       @order.save # save
-      redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id), notice: 'order was successfully updated.' # redirect av le submit
+      redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id) # redirect av le submit
     else
       @order.destroy
-      redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id), notice: 'order was successfully updated.' # redirect av le submit
+      redirect_to new_sitting_area_order_path(@order.sitting_area, Order.new, category_id: @order.item.category.id) # redirect av le submit
     end
   end
 
@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @sitting_area = @order.sitting_area
     @order.destroy
-    redirect_to new_sitting_area_order_path(@sitting_area, Order.new), notice: 'Order was successfully destroyed.'
+    redirect_to new_sitting_area_order_path(@sitting_area, Order.new)
   end
 
   def show

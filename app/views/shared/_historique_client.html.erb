@@ -17,7 +17,7 @@
         <div class="d-flex justify-content-between">
           <div>
             <div>
-            <%= order.quantity %> <%= order.item.name %>
+            <%= pluralize(order.quantity, order.item.name) %>
             </div>
             <small>Il y a  <%= order.find_time %> </small>
           </div>
