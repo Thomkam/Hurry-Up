@@ -100,7 +100,7 @@ itemverres3.save!
 
 restaurant1 = Restaurant.new(name: "Riwan's spices",address: "the best place",number_of_sitting_areas: 2)
 
-file = URI.open("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80")
+file = URI.open("https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=780&q=80")
 restaurant1.image.attach(io: file, filename: "nes.png", content_type: "image/png")
 restaurant1.save!
 
