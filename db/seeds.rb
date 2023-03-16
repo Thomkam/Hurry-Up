@@ -32,7 +32,7 @@ itemcouverts5 = Item.new(name: "cuillère à café",description: "",custom:"")
 itemcouverts5.category = category1
 itemcouverts5.save!
 
-category2 = Category.new(name: "sauce")
+category2 = Category.new(name: "sauces")
 category2.save!
 
 itemsauce1 = Item.new(name: "mayonnaise",description: "ingredients: oeuf, moutarde, huile",custom:"")
