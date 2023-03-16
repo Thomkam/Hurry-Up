@@ -1,5 +1,13 @@
 .v-btn {
-  color: $purple;
+  color: white;
   border: none;
-  background-color: #EDF8FA;
+  background-color: $purple;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
 }
