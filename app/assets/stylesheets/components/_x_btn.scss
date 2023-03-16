@@ -1,5 +1,13 @@
 .x-btn {
-  color: $hurry-grey;
+  color: white;
   border: none;
-  background-color: #EDF8FA;
+  background-color: $hurry-grey;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  margin-left: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

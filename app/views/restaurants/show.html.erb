@@ -39,13 +39,13 @@
                   <%= form_with model: order do |f| %>
                     <%= f.hidden_field :status, value: "refusée" %>
                      <%= button_tag type: "submit", class: "x-btn" do %>
-                    <i class="fa fa-light fa-circle-xmark fa-2x"></i>
+                    <i class="fa-solid fa-xmark fa-2x"></i>
                   <% end %>
                   <% end %>
                   <%= form_with model: order do |f| %>
                     <%= f.hidden_field :status, value: "acceptée" %>
                     <%= button_tag type: "submit", class: "v-btn" do %>
-                  <i class="fa-solid fa-circle-check fa-2x"></i>
+                  <i class="fa-solid fa-check fa-2x"></i>
                 <% end %>
                   <% end %>
                 </div>
