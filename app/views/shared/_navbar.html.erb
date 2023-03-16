@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon ">
   <div class="container">
     <% if current_user %>
-      <p class="mb-0">bienvenu(e) <%= current_user.email.capitalize.split("@")[0] %></p>
+      <p class="mb-0">Bienvenu(e) <%= current_user.email.capitalize.split("@")[0] %></p>
       <%else%>
       <p> connectez vous</p>
     <%end %>
