@@ -137,24 +137,3 @@ User.create!(email: "thomas@example.com", password: "password", restaurant: rest
 User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant1, status: "employee", first_name: "Benoît" )
 
 # CREATE ORDERS
-
-
-
-
-order1 = Order.new(quantity: 1 ,status: "en attente")
-order1.item = itemcouverts3
-order1.sitting_area = sitting_area1
-order1.save!
-
-
-
-
-order2 = Order.new(quantity: 3 ,status: "en attente")
-order2.item = itemcondiments2
-order2.sitting_area = sitting_area4
-order2.save!
-
-order3 = Order.new(quantity: 2 ,status: "en attente")
-order3.item = itemsauce2
-order3.sitting_area = sitting_area6
-order3.save!
