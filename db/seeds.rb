@@ -104,29 +104,29 @@ file = URI.open("https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ix
 restaurant1.image.attach(io: file, filename: "nes.png", content_type: "image/png")
 restaurant1.save!
 
-sitting_area1 = SittingArea.new(sitting_area_number: 1)
+sitting_area1 = SittingArea.new(sitting_area_number: 2)
 sitting_area1.restaurant = restaurant1
 sitting_area1.save!
 
-sitting_area2 = SittingArea.new(sitting_area_number: 2)
+sitting_area2 = SittingArea.new(sitting_area_number: 7)
 sitting_area2.restaurant = restaurant1
 sitting_area2.save!
 
-sitting_area3 = SittingArea.new(sitting_area_number: 3)
+sitting_area3 = SittingArea.new(sitting_area_number: 12)
 sitting_area3.restaurant = restaurant1
 sitting_area3.save!
 
-sitting_area4 = SittingArea.new(sitting_area_number: 4)
+sitting_area4 = SittingArea.new(sitting_area_number: 13)
 sitting_area4.restaurant = restaurant1
 sitting_area4.save!
 
 
 
-sitting_area5 = SittingArea.new(sitting_area_number: 5)
+sitting_area5 = SittingArea.new(sitting_area_number: 24)
 sitting_area5.restaurant = restaurant1
 sitting_area5.save!
 
-sitting_area6 = SittingArea.new(sitting_area_number: 6)
+sitting_area6 = SittingArea.new(sitting_area_number: 26)
 sitting_area6.restaurant = restaurant1
 sitting_area6.save!
 
@@ -137,24 +137,3 @@ User.create!(email: "thomas@example.com", password: "password", restaurant: rest
 User.create!(email: "benoit@example.com", password: "password", restaurant: restaurant1, status: "employee", first_name: "Benoît" )
 
 # CREATE ORDERS
-
-
-
-
-order1 = Order.new(quantity: 1 ,status: "en attente")
-order1.item = itemcouverts3
-order1.sitting_area = sitting_area1
-order1.save!
-
-
-
-
-order2 = Order.new(quantity: 3 ,status: "en attente")
-order2.item = itemcondiments2
-order2.sitting_area = sitting_area4
-order2.save!
-
-order3 = Order.new(quantity: 2 ,status: "en attente")
-order3.item = itemsauce2
-order3.sitting_area = sitting_area6
-order3.save!

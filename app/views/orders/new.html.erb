@@ -20,10 +20,8 @@
       <%= item.name %>
       <div class="d-flex align-items-center category-item-number" >
         <% order = Order.where(item_id: item.id, sitting_area_id: params[:sitting_area_id]).last %>
-
-
         <%# font awsome btn - %>
-        <%= link_to remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "btn btn-primary minus #{ 'disabled' if Order.find_by(item_id: item.id, sitting_area_id: params[:sitting_area_id]).nil? }" do %>
+        <%= link_to remove_order_sitting_area_orders_path(@sitting_area, item_id: item.id), class: "btn btn-primary minus #{ 'disabled' if order.nil? || order.status != "en attente"}" do %>
           <i class="fa-solid fa-minus"></i>
         <% end %>
 
